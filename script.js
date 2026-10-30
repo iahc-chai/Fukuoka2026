@@ -124,6 +124,7 @@ function renderDay() {
   document.querySelectorAll('.day-button').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.date) === day.date)));
   $('#day-kicker').textContent = `DAY ${day.date - 16} / ${day.weekday} ${day.date} ธันวาคม 2026`;
   $('#day-title').textContent = day.title; $('#day-description').textContent = day.description;
+  $('#mobile-day-link').replaceChildren(document.createTextNode(`ดูแผนวันที่ ${day.date} ธันวาคม`), element('span', '', '↗'));
   $('#aso-controls').hidden = day.date !== 20;
   $('#plan-note').textContent = ASO_PLANS[state.plan].note;
   document.querySelectorAll('[data-plan]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.plan === state.plan)));
@@ -149,8 +150,9 @@ function renderFilters() {
 }
 function renderPlaces(category = 'ทั้งหมด') {
   $('#place-list').replaceChildren();
-  Object.entries(POIS).filter(([, poi]) => category === 'ทั้งหมด' || poi[2] === category).forEach(([id, poi]) => {
+  Object.entries(POIS).filter(([, poi]) => category === 'ทั้งหมด' || poi[2] === category).forEach(([id, poi], index) => {
     const card = element('article', 'place-card');
+    card.style.setProperty('--row-index', String(index));
     card.append(element('span', 'eyebrow', poi[2]), element('h3', '', poi[0]), element('p', '', PLACE_NOTES[id] || 'หมุดคำค้นจากแผน · ตรวจตำแหน่ง เวลาเปิด และการเดินทางจริงก่อนออก'), link('เปิดใน Google Maps ↗', mapUrl(id), ''));
     if (id === 'shinshin') card.append(link('ดูสาขาจากเว็บ Shin Shin ↗', 'https://www.hakata-shinshin.com/tenpo_tenjin', ''));
     $('#place-list').append(card);
@@ -158,8 +160,9 @@ function renderPlaces(category = 'ทั้งหมด') {
   document.querySelectorAll('[data-category]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === category)));
 }
 function renderStays() {
-  STAYS.forEach(stay => {
+  STAYS.forEach((stay, index) => {
     const card = element('article', 'place-card');
+    card.style.setProperty('--row-index', String(index));
     card.append(element('span', 'eyebrow', stay.nights), element('h3', '', POIS[stay.poi][0]), element('span', 'stay-status', stay.status), element('p', '', stay.text), link('เปิดหมุด / ย่านใน Google Maps ↗', mapUrl(stay.poi), ''));
     $('#stay-list').append(card);
   });
@@ -210,4 +213,35 @@ $('#reset-checklist').addEventListener('click', () => {
   if (!window.confirm('ล้างเฉพาะเครื่องหมายที่ติ๊กในเว็บนี้? สถานะจองจากสรุปและข้อมูล eSIM/เอกสารจะไม่เปลี่ยน')) return;
   state.done = {}; save(); renderDay(); renderBookings();
 });
-renderDays(); renderDay(); renderFilters(); renderPlaces(); renderStays(); renderBookings(); updateStorageStatus();
+function startSignatureRoute() {
+  const section = $('#route');
+  const counter = $('#route-counter');
+  const media = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  const finish = () => { section.classList.add('is-drawn'); counter.textContent = '07'; };
+  if (!media || media.matches || !window.IntersectionObserver) { finish(); return; }
+  section.classList.add('route-will-animate');
+  counter.textContent = '00';
+  let frame = null;
+  const observer = new window.IntersectionObserver(entries => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    observer.disconnect();
+    section.classList.add('is-drawn');
+    let start = null;
+    const tick = now => {
+      if (start === null) start = now;
+      const progress = Math.min((now - start) / 1800, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      counter.textContent = String(Math.round(7 * eased)).padStart(2, '0');
+      if (progress < 1) frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+  }, {threshold: 0.2});
+  observer.observe(section);
+  media.addEventListener('change', event => {
+    if (!event.matches) return;
+    observer.disconnect();
+    if (frame !== null) window.cancelAnimationFrame(frame);
+    finish();
+  });
+}
+renderDays(); renderDay(); renderFilters(); renderPlaces('อาหาร'); renderStays(); renderBookings(); updateStorageStatus(); startSignatureRoute();
