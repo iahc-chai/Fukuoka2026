@@ -24,6 +24,18 @@ Shin Shin ramen อยู่ในรายการอยากไปและ�
 | 22 ธ.ค. | [Dazaifu / Tosu / Shin Shin](https://iahc-chai.github.io/Fukuoka2026/?day=22#itinerary) |
 | 23 ธ.ค. | [THE KNOT / สนามบิน](https://iahc-chai.github.io/Fukuoka2026/?day=23#itinerary) |
 
+## คู่มือ GitHub Workflow แบบกดดูได้
+
+**[เปิดแผนภาพ GitHub Workflow](https://iahc-chai.github.io/Fukuoka2026/github-workflow/)**
+
+สองมุมมอง: เราเป็นเจ้าของ repo และคนอื่นเป็นเจ้าของโดยเราไม่มีสิทธิ์เขียนต้นฉบับ กดแต่ละขั้นเพื่อดูตำแหน่งโค้ด ก่อน/หลังขั้นนั้น และตัวอย่างคำสั่ง มีวงจรจำลอง PR ถูกขอแก้ ตารางเปรียบเทียบ คำศัพท์ และพิมพ์ทั้งสองมุมมองได้ ปุ่มเป็นการเรียนรู้ ไม่ได้รัน Git หรือสร้าง PR จริง
+
+- ไฟล์: `github-workflow/index.html`, `github-workflow/style.css`, `github-workflow/script.js`
+- [เปิดมุมเจ้าของ](https://iahc-chai.github.io/Fukuoka2026/github-workflow/?case=owner&step=1)
+- [เปิดมุมร่วมแก้ repo คนอื่น](https://iahc-chai.github.io/Fukuoka2026/github-workflow/?case=contributor&step=1)
+- มุมร่วมแก้ใช้ชื่อบัญชีสมมติ `ORIGINAL_OWNER` และ `YOUR_USERNAME` ให้แทนชื่อจริงก่อนใช้คำสั่ง
+- SVG เชื่อมขั้นตามตำแหน่งกล่อง ปรับ 3/2/1 คอลัมน์ตามหน้าจอ ไม่มีไลบรารีแผนภาพหรือขั้นตอน build เพิ่ม
+
 ## แนวดีไซน์
 
 ใช้ Halloran เป็นแนวทางด้านภาพสำหรับ Fukuoka: พื้นเทาอุ่น #F2F1EE, ตัวอักษร #16181A, ส้มอิฐ #C2410C, เส้นแบ่งบาง และตัวอักษรอย่างน้อย 14px ไม่มีเงาการ์ดหรือ gradient ข้อมูลและแบรนด์เป็นทริป Fukuoka
@@ -121,12 +133,14 @@ Repository เป็น Public และเปิด Pages แล้ว ใช�
 
 ```bash
 git diff
-git add index.html style.css trip.js script.js README.md .nojekyll assets/
+git add index.html style.css trip.js script.js README.md .nojekyll assets/ github-workflow/
 git commit -m "Update Fukuoka trip plan"
 git push origin main
 ```
 
 ## การตรวจที่ทำแล้ว
+
+หน้า GitHub Workflow: ตรวจ DOM ของทั้งสองมุมมองครบ 15 ขั้น, เส้น SVG เชื่อมขั้น, การจัด 1/2/3 คอลัมน์ตามขนาดหน้าจอ, คีย์บอร์ดสลับแท็บ, วงจร PR ถูกขอแก้, คัดลอกและข้อความสำรองเมื่อ clipboard ใช้ไม่ได้, ลิงก์เปิดขั้นโดยตรง, พิมพ์ทั้งสองมุมมอง และตัวอักษรขั้นต่ำ 14px ยังไม่ได้ตรวจภาพหน้าจอจริงของหน้านี้
 
 รุ่นดีไซน์ Halloran: ตรวจการวาดเส้นทางและตัวนับเมื่อเลื่อนมาถึง, โหมดลดการเคลื่อนไหวทั้งก่อนโหลดและขณะทำงาน, ปุ่มเปิดแผนตามวันที่เลือกบนมือถือ, ตัวอักษรขั้นต่ำ 14px และคู่สีข้อความที่ใช้บนพื้นหลักทั้งหมดอย่างน้อย 4.5:1 ตรวจฟังก์ชันด้วย DOM และ syntax; ยังไม่ได้ตรวจภาพหน้าจอจริงของดีไซน์รุ่นใหม่นี้
 
