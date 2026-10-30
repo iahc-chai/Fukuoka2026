@@ -13,6 +13,9 @@ try {
     }
   }
 } catch { storageAvailable = false; }
+// ลิงก์ ?day=22 เปิดแผนวันนั้นโดยตรง แม้เคยบันทึกวันอื่นไว้
+const requestedDay = Number(new URLSearchParams(window.location.search).get('day'));
+if (DAYS.some(day => day.date === requestedDay)) state.selectedDay = requestedDay;
 const $ = selector => document.querySelector(selector);
 function element(tag, className, text) {
   const node = document.createElement(tag); node.className = className;
@@ -44,6 +47,39 @@ function currentStops(date = state.selectedDay) {
   return date === 20 ? ASO_PLANS[state.plan].stops : DAYS.find(day => day.date === date).stops;
 }
 function taskKey(date, item) { return `day-${date}-${item.id}`; }
+function dayMapPois() {
+  const day = DAYS.find(item => item.date === state.selectedDay);
+  return [...new Set([day.origin, ...currentStops().map(item => item.poi), day.destination])].filter(id => id && POIS[id]);
+}
+function selectMapPoi(id) {
+  const poi = POIS[id];
+  $('#map-open-place').href = mapUrl(id);
+  $('#map-selection').textContent = `กำลังดู: ${poi[0]}`;
+  document.querySelectorAll('[data-map-poi]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mapPoi === id)));
+  const frame = $('#day-map-frame');
+  // ใช้ลิงก์ Relax ต้นฉบับ ไม่เดาพิกัดจาก short URL
+  const directOnly = !poi[1];
+  frame.hidden = directOnly;
+  $('#map-direct-only').hidden = !directOnly;
+  if (directOnly) frame.removeAttribute('src');
+  else {
+    const params = new URLSearchParams({q: poi[1], z: '14', output: 'embed'});
+    frame.title = `แผนที่ ${poi[0]} · ${state.selectedDay} ธันวาคม 2026`;
+    frame.src = `https://maps.google.com/maps?${params}`;
+  }
+}
+function renderDayMap() {
+  const ids = dayMapPois();
+  $('#map-day-label').textContent = `${state.selectedDay} ธันวาคม 2026 · ${ids.length} จุดในแผนวันนี้`;
+  $('#map-pin-picker').replaceChildren();
+  ids.forEach((id, index) => {
+    const button = element('button', 'map-pin', `${index + 1}. ${POIS[id][0]}`);
+    button.type = 'button'; button.dataset.mapPoi = id;
+    button.addEventListener('click', () => selectMapPoi(id));
+    $('#map-pin-picker').append(button);
+  });
+  selectMapPoi(ids[0]);
+}
 function updateDayProgress() {
   const stops = currentStops();
   const count = stops.filter(item => state.done[taskKey(state.selectedDay, item)]).length;
@@ -54,7 +90,12 @@ function renderDays() {
     const button = element('button', 'day-button'); button.type = 'button'; button.dataset.date = day.date;
     button.setAttribute('aria-label', `${day.weekday} ${day.date} ธันวาคม 2026 ${day.tag}`);
     button.append(element('span', '', day.weekday), element('strong', '', day.date), element('small', '', day.tag));
-    button.addEventListener('click', () => { state.selectedDay = day.date; save(); renderDay(); });
+    button.addEventListener('click', () => {
+      state.selectedDay = day.date;
+      const url = new URL(window.location.href); url.searchParams.set('day', String(day.date));
+      window.history.replaceState(null, '', url);
+      save(); renderDay();
+    });
     $('#day-picker').append(button);
   });
 }
@@ -98,7 +139,7 @@ function renderDay() {
   if (day.date === 20 && !hideRoute) $('#day-routes').append(link('Monzenmachi → Beppu ↗', routeUrl('monzen', 'beppu', 'driving'), 'button'));
   if (day.date === 18) $('#day-routes').append(link('Mojiko → Hakata (เช็กรอบจริง) ↗', routeUrl('mojiko', 'hakata'), 'button'));
   if (day.date === 22) $('#day-routes').append(link('Dazaifu → Tosu (ตรวจบัส) ↗', routeUrl('dazaifu', 'tosu'), 'button'));
-  renderTimeline($('#timeline'), day.date); updateDayProgress(); renderPrint();
+  renderTimeline($('#timeline'), day.date); renderDayMap(); updateDayProgress(); renderPrint();
 }
 function renderFilters() {
   ['ทั้งหมด', 'อาหาร', 'เนื้อ', 'กาแฟ', 'ที่พัก', 'ธรรมชาติ', 'ออนเซ็น', 'ช้อปปิ้ง', 'รถเช่า', 'สถานที่'].forEach(category => {
@@ -111,6 +152,7 @@ function renderPlaces(category = 'ทั้งหมด') {
   Object.entries(POIS).filter(([, poi]) => category === 'ทั้งหมด' || poi[2] === category).forEach(([id, poi]) => {
     const card = element('article', 'place-card');
     card.append(element('span', 'eyebrow', poi[2]), element('h3', '', poi[0]), element('p', '', PLACE_NOTES[id] || 'หมุดคำค้นจากแผน · ตรวจตำแหน่ง เวลาเปิด และการเดินทางจริงก่อนออก'), link('เปิดใน Google Maps ↗', mapUrl(id), ''));
+    if (id === 'shinshin') card.append(link('ดูสาขาจากเว็บ Shin Shin ↗', 'https://www.hakata-shinshin.com/tenpo_tenjin', ''));
     $('#place-list').append(card);
   });
   document.querySelectorAll('[data-category]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === category)));

@@ -30,6 +30,14 @@
     <section id="itinerary" class="section" aria-labelledby="itinerary-title">
       <div class="section-heading"><div><p class="eyebrow">THE ITINERARY</p><h2 id="itinerary-title">วันนี้ ไปไหนดี</h2></div><p>เลือกวัน แล้วค่อย ๆ เที่ยวไปด้วยกัน</p></div>
       <div id="day-picker" class="day-picker" role="group" aria-label="เลือกวันเที่ยว"></div>
+      <section class="daily-map" aria-labelledby="map-title">
+        <div class="map-heading"><div><p class="eyebrow">ON THE MAP</p><h3 id="map-title">แผนที่ประจำวัน</h3><p id="map-day-label"></p></div><a id="map-open-place" class="button" target="_blank" rel="noopener noreferrer">เปิดหมุดใน Google Maps ↗</a></div>
+        <div id="map-pin-picker" class="map-pin-picker" role="group" aria-label="เลือกหมุดบนแผนที่ของวันนี้"></div>
+        <p id="map-selection" class="map-selection" aria-live="polite"></p>
+        <iframe id="day-map-frame" class="day-map-frame" title="แผนที่ Google Maps ของสถานที่ที่เลือก" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div id="map-direct-only" class="map-direct-only" hidden><strong>หมุดรับ–คืน Relax ที่คุณยืนยัน</strong><p>เปิดลิงก์ต้นฉบับเพื่อดูตำแหน่งและกดนำทางใน Google Maps</p></div>
+        <p class="map-help">เลือกหมุดเพื่อดูแผนที่ทีละสถานที่ของวันนั้น · ดูการเดินทางจากปุ่มเส้นทางอ้างอิงด้านล่าง หากแผนที่ไม่แสดง ให้กดเปิดหมุดใน Google Maps</p>
+      </section>
       <div class="planner-grid"><div class="day-panel">
         <div class="day-heading"><div><span id="day-kicker" class="eyebrow"></span><h3 id="day-title"></h3><p id="day-description"></p></div><a id="day-route" class="button button-light" target="_blank" rel="noopener noreferrer">เปิดเส้นทาง ↗</a></div>
         <div id="day-routes" class="day-routes"></div><p id="route-note" class="route-note"></p>

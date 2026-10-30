@@ -2,7 +2,29 @@
 
 เว็บแผนทริปผู้ใหญ่ 2 คน · Hakata → Kurume → Kumamoto → Aso → Beppu → Tenjin
 
-## ลองเปิดเว็บ
+## เปิดเว็บทริป
+
+**[Fukuoka Trip Planner บน GitHub Pages](https://iahc-chai.github.io/Fukuoka2026/)**
+
+เว็บหลักเผยแพร่จาก `main / (root)` ใช้ลิงก์นี้บนมือถือได้เลย ไม่ต้องรัน localhost
+
+เลือกวัน 17–23 ธ.ค. แล้วดูแผนที่ Google Maps ในหน้าเว็บ เลือกหมุดเพื่อดูทีละสถานที่ของวันนั้น และใช้ปุ่มเส้นทางอ้างอิงเพื่อเปิดการเดินทางใน Google Maps แผนที่ต้องใช้อินเทอร์เน็ต หากโหลดไม่ได้ยังเปิดลิงก์หมุดภายนอกได้
+
+Shin Shin ramen อยู่ในรายการอยากไปและแผนมื้อเย็น 22 ธ.ค. ที่ Tenjin Honten หลังกลับจาก Tosu ดู [ข้อมูลสาขาจากร้าน](https://www.hakata-shinshin.com/tenpo_tenjin) และ [หมุด Google Maps](https://www.google.com/maps/search/?api=1&query=ShinShin+Tenjin+Honten+Fukuoka) โดยตรวจวันเปิดและคิวอีกครั้งใกล้เดินทาง
+
+### เปิดแผนและแผนที่รายวัน
+
+| วัน | แผนและแผนที่ในเว็บ |
+|---|---|
+| 17 ธ.ค. | [สนามบิน / Hakata / Nanzoin](https://iahc-chai.github.io/Fukuoka2026/?day=17#itinerary) |
+| 18 ธ.ค. | [Kokura / Karato / Outlet / Mojiko](https://iahc-chai.github.io/Fukuoka2026/?day=18#itinerary) |
+| 19 ธ.ค. | [Relax / Fruitelier / Kumamoto](https://iahc-chai.github.io/Fukuoka2026/?day=19#itinerary) |
+| 20 ธ.ค. | [Aso / Akaushi / Beppu](https://iahc-chai.github.io/Fukuoka2026/?day=20#itinerary) |
+| 21 ธ.ค. | [คืนรถ / LaLaport / Momochi / Tenjin](https://iahc-chai.github.io/Fukuoka2026/?day=21#itinerary) |
+| 22 ธ.ค. | [Dazaifu / Tosu / Shin Shin](https://iahc-chai.github.io/Fukuoka2026/?day=22#itinerary) |
+| 23 ธ.ค. | [THE KNOT / สนามบิน](https://iahc-chai.github.io/Fukuoka2026/?day=23#itinerary) |
+
+## สำหรับแก้เว็บในเครื่อง (ทางเลือก)
 
 ```bash
 python3 -m http.server 8000
@@ -13,9 +35,9 @@ python3 -m http.server 8000
 - `index.html` — หน้าเว็บ
 - `style.css` — รูปแบบมือถือ/เดสก์ท็อป และการพิมพ์
 - `trip.js` — แผนรายวัน หมุด ที่พัก และงานค้าง
-- `script.js` — เลือกวัน กรองหมุด เช็กลิสต์ แผน Aso และปุ่มพิมพ์/รีเซ็ต
+- `script.js` — เลือกวัน แผนที่รายวัน/เลือกหมุด กรองสถานที่ เช็กลิสต์ แผน Aso และปุ่มพิมพ์/รีเซ็ต
 
-ไม่ต้องติดตั้งแพ็กเกจ สถานะบันทึกใน localStorage ของเบราว์เซอร์และ origin เดียวกัน ไม่ซิงก์ข้ามเครื่องหรือข้าม URL สถานะ v2 แยกจากแผนเก่า ไม่ยกเครื่องหมายติ๊กเก่ามาใช้กับการจองใหม่ การรีเซ็ตล้างเฉพาะสิ่งที่ติ๊กในเว็บ ไม่เปลี่ยนสถานะจองจากสรุปผู้ใช้
+ไม่ต้องติดตั้งแพ็กเกจ สถานะบันทึกใน localStorage ของเบราว์เซอร์และ origin เดียวกัน ไม่ซิงก์ข้ามเครื่องหรือข้าม origin (localhost กับ Pages บันทึกแยกกัน) สถานะ v2 แยกจากแผนเก่า ไม่ยกเครื่องหมายติ๊กเก่ามาใช้กับการจองใหม่ การรีเซ็ตล้างเฉพาะสิ่งที่ติ๊กในเว็บ ไม่เปลี่ยนสถานะจองจากสรุปผู้ใช้
 
 ## แหล่งข้อมูลและสถานะ
 
@@ -50,6 +72,7 @@ python3 -m http.server 8000
 | ที่พัก | EN HOTEL Hakata | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=EN%20HOTEL%20Hakata%20Fukuoka) |
 | สถานที่ | Nanzoin | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Nanzoin%20Sasaguri%20Fukuoka) |
 | สถานที่ | Hakata Christmas Market | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Hakata%20Station%20Christmas%20Market) |
+| อาหาร | Shin Shin · Tenjin Honten | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=ShinShin+Tenjin+Honten+Fukuoka) |
 | อาหาร | Nakasu yatai | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Nakasu%20Yatai%20Fukuoka) |
 | สถานที่ | Kokura Station | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Kokura%20Station%20Kitakyushu) |
 | สถานที่ | Shimonoseki Station | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Shimonoseki%20Station%20Yamaguchi) |
@@ -80,13 +103,11 @@ python3 -m http.server 8000
 
 ## เผยแพร่ GitHub Pages
 
-เป้าหมายที่ผู้ใช้ระบุ: `iahc-chai/Fukuoka2026` → Pages จาก `main` / `root`
+เว็บหลัก: **https://iahc-chai.github.io/Fukuoka2026/**
 
-โค้ดชุดนี้จัดไฟล์ไว้ที่ root สำหรับ GitHub Pages จาก `main` / `(root)` ไม่ต้องติดตั้งแพ็กเกจหรือรัน build
+Repository เป็น Public และเปิด Pages แล้ว ใช้ Deploy from a branch → `main` → `/(root)` ไฟล์ HTML/CSS/JavaScript อยู่ที่ root ไม่ต้องติดตั้งแพ็กเกจหรือรัน build
 
-เปิด [Settings → Pages](https://github.com/iahc-chai/Fukuoka2026/settings/pages) แล้วเลือก Deploy from a branch → main / (root) → Save จากนั้นตรวจผล deployment และ URL ที่ GitHub แจ้ง การ push โค้ดอย่างเดียวไม่ได้เปิด Pages ครั้งแรก
-
-repository เป็น Private ตามสถานะตอนเริ่มงาน สิทธิ์ Pages สำหรับ repo Private ขึ้นกับแผน GitHub ของบัญชี หาก GitHub ขอให้อัปเกรดแผนหรือเปลี่ยนเป็น Public ให้เจ้าของเลือกก่อน ไม่มีการเปลี่ยน visibility อัตโนมัติ
+หลังอัปโหลดการแก้ไขไป `main` ให้ตรวจ [Actions](https://github.com/iahc-chai/Fukuoka2026/actions) ว่า Pages build และ deploy ผ่าน แล้วรีเฟรชเว็บหลัก
 
 ### แก้เว็บครั้งถัดไป
 
@@ -98,6 +119,8 @@ git push origin main
 ```
 
 ## การตรวจที่ทำแล้ว
+
+รุ่นแผนที่รายวัน: ตรวจ DOM และการกดเลือกครบ 7 วัน/ทุกหมุด, ลิงก์ Relax ต้นฉบับ, สลับแผน Aso แล้วหมุดเปลี่ยนตาม, Shin Shin วันที่ 22, ลิงก์เปิดวันโดยตรง, สถานะเช็กลิสต์หลังโหลดใหม่ และพิมพ์ครบทั้งทริป การตรวจชุดนี้ไม่ได้ทดสอบการเรนเดอร์เนื้อหาจาก Google Maps ภายใน iframe จึงมีลิงก์เปิด Maps โดยตรงสำรองไว้
 
 ตรวจ JavaScript syntax และใช้งานจริงด้วย Chromium: เลือกครบ 7 วัน, ลิงก์ Maps, ที่พัก 4 จุด, งานค้าง 10 รายการ, แผน Aso/สำรองและการแยกเช็กลิสต์, localStorage หลัง reload/ข้อมูลเสีย/ถูกบล็อก, reset ยืนยันและยกเลิก, พิมพ์ครบ 7 วัน, ไม่มีเนื้อหาล้นที่ความกว้าง 375/390/768/1440 และไม่มี JavaScript error ตรวจภาพหน้าจอมือถือและเดสก์ท็อปแล้ว ไม่ได้ตรวจเวลาเดินทางหรือเวลาเปิดของสถานที่จริง
 

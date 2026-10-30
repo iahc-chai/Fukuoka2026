@@ -9,6 +9,7 @@ const POIS = {
   nanzoin: ['Nanzoin', 'Nanzoin Sasaguri Fukuoka', 'สถานที่'],
   market: ['Hakata Christmas Market', 'Hakata Station Christmas Market', 'สถานที่'],
   yatai: ['Nakasu yatai', 'Nakasu Yatai Fukuoka', 'อาหาร'],
+  shinshin: ['Shin Shin · Tenjin Honten', '博多らーめん ShinShin 天神本店 福岡市中央区天神3-2-19', 'อาหาร'],
   kokura: ['Kokura Station', 'Kokura Station Kitakyushu', 'สถานที่'],
   shimonoseki: ['Shimonoseki Station', 'Shimonoseki Station Yamaguchi', 'สถานที่'],
   karato: ['Karato Market', 'Karato Market Shimonoseki', 'อาหาร'],
@@ -69,7 +70,7 @@ const DAYS = [
     activity('dazaifu-v2', 'เช้า', 'Dazaifu Tenmangu', 'เดินศาลเจ้าและถนนหน้าศาลเจ้า หาของกินตามสะดวก', 'Nishitetsu Fukuoka (Tenjin) → Futsukaichi → สาย Dazaifu', 'dazaifu'),
     activity('dazaifu-coffee', 'สาย', 'กาแฟแถว Dazaifu', 'Starbucks Dazaifu เป็นตัวเลือกในย่าน ตรวจเวลาเปิดและคิวจริง', 'เดินถนนหน้าศาลเจ้า', 'starbucks', 'ตัวเลือก'),
     activity('tosu', 'เที่ยง–บ่าย', 'Tosu Premium Outlets', 'เส้นทางจากร่าง: กลับ Futsukaichi → Nishitetsu Ogori → บัส Outlet ต้องตรวจว่ามีบริการและรอบตรงวันที่ไป', 'Nishitetsu + บัส · รอบจริงรอตรวจ', 'tosu', 'รอตรวจ'),
-    activity('last-dinner', 'เย็น', 'กลับ Tenjin · มื้อเย็น & จัดกระเป๋า', 'ตรวจบัสขากลับก่อนช้อป และเตรียมเวลาเดินทางไปสนามบินเช้าวันถัดไป', 'บัส + รถไฟกลับ Tenjin', 'knot')
+    activity('shinshin-dinner', 'เย็น', 'Shin Shin ramen · มื้อเย็น Tenjin', 'ร้านที่อยากไป เล็งสาขา Tenjin Honten หลังกลับจาก Tosu ตรวจเวลาเปิดและคิวใกล้วันเดินทาง แล้วกลับโรงแรมจัดกระเป๋า', 'บัส + รถไฟกลับ Tenjin → เดินไปสาขา Tenjin Honten', 'shinshin', 'อยากไป')
   ] },
   { date: 23, weekday: 'พุธ', tag: 'BKK', title: 'กลับกรุงเทพฯ พร้อมความทรงจำ', description: 'เวลาเที่ยวบินต้องตรวจตั๋วจริงก่อนใช้', mode: 'driving', origin: 'knot', destination: 'airport', routeLabel: 'THE KNOT → International Terminal', routeNote: 'ลิงก์เส้นทางถนนสำหรับแท็กซี่ ไม่ใช่การจองรถหรือการรับรองเวลาเดินทาง', stops: [
     activity('checkout-v2', 'เช้า', 'เช็กเอาต์ & ไปสนามบิน', 'แท็กซี่ไป Fukuoka Airport International Terminal โดยตรงสะดวกเมื่อมีกระเป๋า เผื่อเวลาเช็กอินระหว่างประเทศตามคำแนะนำสายการบิน', 'แท็กซี่ หรือขนส่งสาธารณะตามเวลาจริง', 'airport'),
@@ -119,6 +120,7 @@ const BOOKINGS = [
   { id: 'flight-v2', title: 'ตรวจเที่ยวบินและชื่อโรงแรม Hakata จากตั๋ว/อีเมล', note: 'TG648/TG649 และเวลาจากร่างยังไม่ได้ยืนยันใน session นี้' }
 ];
 const PLACE_NOTES = {
+  shinshin: 'อยากไป · วางไว้เย็น 22 ธ.ค. หลังกลับจาก Tosu สาขา Tenjin Honten ที่อยู่ตามเว็บร้าน Tenjin 3-2-19 ตรวจเวลาเปิดและคิวอีกครั้งก่อนเดินทาง',
   relax: 'หมุดรับ–คืนที่ผู้ใช้ยืนยัน · 19 ธ.ค. 12:00 → 21 ธ.ค. 12:00 ส่วนรุ่นรถ ประกัน ยางฤดูหนาว ETC และค่าเพิ่มยังรอตรวจ voucher',
   takachiho: 'รอตัดสินใจ · ผู้ใช้ยังไม่ได้ยกเลิก หากใส่กลับต้องจัดวัน Aso ใหม่',
   umi: 'รอจัดเวลา · อยู่ Beppu ไม่ใช่ Aso Monzenmachi อาจต้องเลือกระหว่างบ่อกับออนเซ็น',
