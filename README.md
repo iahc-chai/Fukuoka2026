@@ -1,1 +1,104 @@
-# Fukuoka2026
+# Fukuoka / Kyushu · 17–23 ธันวาคม 2026
+
+เว็บแผนทริปผู้ใหญ่ 2 คน · Hakata → Kurume → Kumamoto → Aso → Beppu → Tenjin
+
+## ลองเปิดเว็บ
+
+```bash
+python3 -m http.server 8000
+```
+
+เปิด http://localhost:8000 ในเครื่องที่รันคำสั่ง หากเป็นคลาวด์ให้ใช้ port forwarding ของเครื่องมือ
+
+- `index.html` — หน้าเว็บ
+- `style.css` — รูปแบบมือถือ/เดสก์ท็อป และการพิมพ์
+- `trip.js` — แผนรายวัน หมุด ที่พัก และงานค้าง
+- `script.js` — เลือกวัน กรองหมุด เช็กลิสต์ แผน Aso และปุ่มพิมพ์/รีเซ็ต
+
+ไม่ต้องติดตั้งแพ็กเกจ สถานะบันทึกใน localStorage ของเบราว์เซอร์และ origin เดียวกัน ไม่ซิงก์ข้ามเครื่องหรือข้าม URL สถานะ v2 แยกจากแผนเก่า ไม่ยกเครื่องหมายติ๊กเก่ามาใช้กับการจองใหม่ การรีเซ็ตล้างเฉพาะสิ่งที่ติ๊กในเว็บ ไม่เปลี่ยนสถานะจองจากสรุปผู้ใช้
+
+## แหล่งข้อมูลและสถานะ
+
+อ้างอิงสรุปล่าสุดที่ผู้ใช้ส่งมาใน session นี้ ยังไม่ได้ตรวจ Gmail ตั๋ว voucher รอบรถไฟ ราคา หรือเวลาเปิดแบบสด ข้อมูลเที่ยวบินแสดงเป็นรอตรวจ ไม่ใช่เวลายืนยัน ไม่มีการซื้อตั๋ว จองโรงแรม หรือส่งอีเมลในงานนี้
+
+- รถ Relax: 19 ธ.ค. 12:00 → 21 ธ.ค. 12:00 รอตรวจ voucher และยางฤดูหนาว ไม่ใช้ราคา/ประกัน/ETC ของ HM แทน
+- [หมุด Relax รับ–คืนรถที่ผู้ใช้ยืนยัน](https://maps.app.goo.gl/7bySW1826KqPGumC8?g_st=ic) · 19 ธ.ค. 12:00 → 21 ธ.ค. 12:00 เปิดลิงก์นี้แล้วกดนำทางใน Google Maps เส้นทางรวมวันรับ/คืนรถในเว็บใช้ Hakata เป็นเพียงภาพรวม ไม่ใช่พิกัด Relax
+- Aso วันที่ 20: เดินหนึ่งยอดเมื่อเหมาะสม ไม่มี Nakadake ปรับตามอากาศ ถนน และประกาศทางเดิน แผนสำรองยังต้องยืนยันเส้นทางปลอดภัย
+- Takachiho Gorge: ยังรอตัดสินใจ ไม่ถือว่าผู้ใช้ยกเลิก หากใส่กลับต้องลดกิจกรรม Aso และจัดวันใหม่
+- Umi Jigoku: รอจัดเวลา ไม่ใช่ Aso Monzenmachi และอาจต้องเลือกระหว่างบ่อกับออนเซ็น
+- Yufuin: เก็บไว้รอบหน้าด้วยรถไฟ ไม่ใส่ปราสาท Kumamoto หรือ Kagoshima ในแผนนี้
+- eSIM มีแล้ว / ยื่นขอ IDP แล้ว / กรอก Guest Information Beppu แล้ว ตามผู้ใช้แจ้ง รอยืนยันการรับเล่ม IDP
+
+## ที่พัก
+
+| คืน | ที่พัก / ย่าน | สถานะตามสรุป |
+|---|---|---|
+| 17–19 ธ.ค. · 2 คืน | EN HOTEL Hakata | รอตรวจชื่อ · มีข้อมูลวันเข้าพักตามสรุป แต่ชื่อ EN HOTEL Hakata ต้องเทียบอีเมลอีกครั้ง |
+| 19–20 ธ.ค. · 1 คืน | Sakuramachi / Karashimacho | ยังไม่จอง · 1 ห้อง ผู้ใหญ่ 2 คน พร้อมที่จอดรถ เล็ง Sakuramachi / Karashimacho ลิงก์เป็นย่าน ไม่ใช่โรงแรมที่จองแล้ว |
+| 20–21 ธ.ค. · 1 คืน | Prime Room Beppu Root | ตามสรุปมีจอง · Prime Room Beppu Root · Standard House ที่จอดรถฟรีและกรอกข้อมูลผู้เข้าพักแล้วตามผู้ใช้แจ้ง ยังไม่ได้ตรวจ voucher ใน session นี้ |
+| 21–23 ธ.ค. · 2 คืน | THE KNOT FUKUOKA Tenjin | ตามสรุปชำระแล้ว · Superior Small Double · ต้องการห้องไม่สูบบุหรี่ คำขอส่งสำเร็จ/โรงแรมตอบรับหรือยัง ต้องตรวจ Gmail |
+
+## Google Maps ทุกหมุด
+
+ยกเว้น Relax ที่ใช้ลิงก์ตรงจากผู้ใช้ ลิงก์อื่นค้นชื่อสถานที่ ไม่ใช่ Place ID ที่ตรวจยืนยันแล้ว ให้ตรวจชื่อ ตำแหน่ง และเวลาเปิดใน Maps ก่อนนำทาง บางหมุดเป็นย่านหรือจุดทางเลือกที่ยังไม่เข้าตาราง
+
+| หมวด | สถานที่ | ลิงก์ Google Maps |
+|---|---|---|
+| รถเช่า | Relax · รับและคืนรถ | [เปิดหมุดที่ผู้ใช้ยืนยัน](https://maps.app.goo.gl/7bySW1826KqPGumC8?g_st=ic) |
+| สถานที่ | Fukuoka Airport · International | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Fukuoka%20Airport%20International%20Terminal) |
+| สถานที่ | Hakata Station | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Hakata%20Station%20Fukuoka) |
+| ที่พัก | EN HOTEL Hakata | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=EN%20HOTEL%20Hakata%20Fukuoka) |
+| สถานที่ | Nanzoin | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Nanzoin%20Sasaguri%20Fukuoka) |
+| สถานที่ | Hakata Christmas Market | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Hakata%20Station%20Christmas%20Market) |
+| อาหาร | Nakasu yatai | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Nakasu%20Yatai%20Fukuoka) |
+| สถานที่ | Kokura Station | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Kokura%20Station%20Kitakyushu) |
+| สถานที่ | Shimonoseki Station | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Shimonoseki%20Station%20Yamaguchi) |
+| อาหาร | Karato Market | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Karato%20Market%20Shimonoseki) |
+| ช้อปปิ้ง | THE OUTLETS KITAKYUSHU | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=THE%20OUTLETS%20KITAKYUSHU) |
+| สถานที่ | Mojiko Retro | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Mojiko%20Retro%20Kitakyushu) |
+| อาหาร | Fruitelier Nakamura Orchard | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Fruitelier%20Nakamura%20Orchard%20Kurume) |
+| สถานที่ | Sakuramachi / Karashimacho | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Sakuramachi%20Kumamoto) |
+| อาหาร | Shimotori Shopping Arcade | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Shimotori%20Shopping%20Arcade%20Kumamoto) |
+| ธรรมชาติ | Kusasenri | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Kusasenri%20Aso%20Kumamoto) |
+| ธรรมชาติ | Kishimadake | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Kishimadake%20Aso%20Kumamoto) |
+| กาแฟ | Kusasenri Coffee Roastery | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Kusasenri%20Coffee%20Roastery%20Aso) |
+| เนื้อ | Aso Hanabishi · Akaushi | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Aso%20Hanabishi%20Miyaji%20Kumamoto) |
+| สถานที่ | Aso Monzenmachi | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Aso%20Monzenmachi%20Aso%20Shrine%20Miyaji) |
+| กาแฟ | The 24 Club | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=The%2024%20Club%20Aso%20Miyaji) |
+| ธรรมชาติ | Daikanbo | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Daikanbo%20Aso%20Kumamoto) |
+| ที่พัก | Prime Room Beppu Root | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Prime%20Room%20Beppu%20Root%20Beppu) |
+| ออนเซ็น | Hyotan Onsen | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Hyotan%20Onsen%20Beppu) |
+| ออนเซ็น | Umi Jigoku | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Umi%20Jigoku%20Beppu) |
+| ธรรมชาติ | Takachiho Gorge | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Takachiho%20Gorge%20Miyazaki) |
+| ช้อปปิ้ง | LaLaport Fukuoka | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Mitsui%20Shopping%20Park%20LaLaport%20Fukuoka) |
+| สถานที่ | Momochi / Fukuoka Tower | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Fukuoka%20Tower%20Momochi%20Fukuoka) |
+| ที่พัก | THE KNOT FUKUOKA Tenjin | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=THE%20KNOT%20FUKUOKA%20Tenjin) |
+| สถานที่ | Tenjin Christmas Market | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Tenjin%20Christmas%20Market%20Fukuoka) |
+| สถานที่ | Dazaifu Tenmangu | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Dazaifu%20Tenmangu) |
+| กาแฟ | Starbucks Dazaifu | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Starbucks%20Dazaifu%20Tenmangu%20Omotesando) |
+| ช้อปปิ้ง | Tosu Premium Outlets | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Tosu%20Premium%20Outlets%20Saga) |
+
+## เผยแพร่ GitHub Pages
+
+เป้าหมายที่ผู้ใช้ระบุ: `iahc-chai/Fukuoka2026` → Pages จาก `main` / `root`
+
+โค้ดชุดนี้จัดไฟล์ไว้ที่ root สำหรับ GitHub Pages จาก `main` / `(root)` ไม่ต้องติดตั้งแพ็กเกจหรือรัน build
+
+เปิด [Settings → Pages](https://github.com/iahc-chai/Fukuoka2026/settings/pages) แล้วเลือก Deploy from a branch → main / (root) → Save จากนั้นตรวจผล deployment และ URL ที่ GitHub แจ้ง การ push โค้ดอย่างเดียวไม่ได้เปิด Pages ครั้งแรก
+
+repository เป็น Private ตามสถานะตอนเริ่มงาน สิทธิ์ Pages สำหรับ repo Private ขึ้นกับแผน GitHub ของบัญชี หาก GitHub ขอให้อัปเกรดแผนหรือเปลี่ยนเป็น Public ให้เจ้าของเลือกก่อน ไม่มีการเปลี่ยน visibility อัตโนมัติ
+
+### แก้เว็บครั้งถัดไป
+
+```bash
+git diff
+git add index.html style.css trip.js script.js README.md .nojekyll
+git commit -m "Update Fukuoka trip plan"
+git push origin main
+```
+
+## การตรวจที่ทำแล้ว
+
+ตรวจ JavaScript syntax และใช้งานจริงด้วย Chromium: เลือกครบ 7 วัน, ลิงก์ Maps, ที่พัก 4 จุด, งานค้าง 10 รายการ, แผน Aso/สำรองและการแยกเช็กลิสต์, localStorage หลัง reload/ข้อมูลเสีย/ถูกบล็อก, reset ยืนยันและยกเลิก, พิมพ์ครบ 7 วัน, ไม่มีเนื้อหาล้นที่ความกว้าง 375/390/768/1440 และไม่มี JavaScript error ตรวจภาพหน้าจอมือถือและเดสก์ท็อปแล้ว ไม่ได้ตรวจเวลาเดินทางหรือเวลาเปิดของสถานที่จริง
+
+ไม่มีเลขจอง PIN พาสปอร์ต หรือ QR ตั๋วในโค้ด ฟอนต์ Google Fonts ต้องใช้อินเทอร์เน็ต ถ้าโหลดไม่ได้ใช้ฟอนต์ระบบ ส่วนการเลือกวันและเช็กลิสต์ทำงานฝั่งเบราว์เซอร์
