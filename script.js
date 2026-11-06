@@ -2,12 +2,23 @@
 // v2 แยกจากข้อมูลแผนรถไฟเก่า เพื่อไม่ให้สถานะกิจกรรมเดิมไปติ๊กแทนรายการใหม่
 const STORAGE_KEY = 'our-fukuoka-trip-2026-v2';
 let storageAvailable = true;
-let state = { selectedDay: 17, plan: 'aso', done: {} };
+let state = { selectedDay: 17, plan: 'aso', done: {}, wishes: [
+  { id: 'wish-torius-stock', text: 'เช็กสต็อกและราคา Factory Outlet ที่ mont-bell Torius: สีดำ BK และไซซ์ที่ใส่ ก่อนเดินทาง', done: false },
+  { id: 'wish-torius-visit', text: '17 ธ.ค. ไป mont-bell Torius Store · จุดที่ต้องไปก่อนออก Aso', done: false },
+  { id: 'wish-down-fitting', text: 'ลอง US Superior Down Jacket #2301377 ไม่มีฮู้ด 800 FP; เทียบรุ่นมีฮู้ด #2301375 และเลือกตัวที่พอดีในราคา Outlet', done: false }
+] };
 try {
   const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
   if (saved && typeof saved === 'object') {
     if (DAYS.some(day => day.date === saved.selectedDay)) state.selectedDay = saved.selectedDay;
     if (saved.plan === 'aso' || saved.plan === 'backup') state.plan = saved.plan;
+    if (Array.isArray(saved.wishes)) {
+      const ids = new Set();
+      state.wishes = saved.wishes.filter(item => {
+        if (!item || typeof item.id !== 'string' || typeof item.text !== 'string' || !item.text.trim() || ids.has(item.id)) return false;
+        ids.add(item.id); return true;
+      }).map(item => ({ id: item.id, text: item.text.trim().slice(0, 300), done: item.done === true }));
+    }
     if (saved.done && typeof saved.done === 'object' && !Array.isArray(saved.done)) {
       state.done = Object.fromEntries(Object.entries(saved.done).filter(([, value]) => value === true));
     }
@@ -26,6 +37,9 @@ function updateStorageStatus() {
   $('#storage-status').textContent = storageAvailable
     ? 'เช็กลิสต์บันทึกเฉพาะในเบราว์เซอร์นี้'
     : 'อ่านหรือบันทึกข้อมูลเดิมไม่ได้ สถานะอยู่เฉพาะรอบนี้จนกว่าจะบันทึกสำเร็จ';
+  $('#wish-storage-note').textContent = storageAvailable
+    ? 'รายการบันทึกเฉพาะเบราว์เซอร์และเครื่องนี้ เปิดเครื่องอื่นจะเป็นคนละรายการ'
+    : 'บันทึกลงเครื่องไม่ได้ รายการที่เพิ่มหรือแก้ไขจะอยู่เฉพาะรอบนี้ กรุณาเก็บข้อความไว้ก่อนปิดหน้า';
 }
 function save() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); storageAvailable = true; }
@@ -140,6 +154,9 @@ function renderDay() {
   if (day.date === 20 && !hideRoute) $('#day-routes').append(link('Monzenmachi → Beppu ↗', routeUrl('monzen', 'beppu', 'driving'), 'button'));
   if (day.date === 18) $('#day-routes').append(link('Mojiko → Hakata (เช็กรอบจริง) ↗', routeUrl('mojiko', 'hakata'), 'button'));
   if (day.date === 22) $('#day-routes').append(link('Dazaifu → Tosu (ตรวจบัส) ↗', routeUrl('dazaifu', 'tosu'), 'button'));
+  if (day.date === 17) {
+    $('#day-routes').append(link('Hakata → Torius (ตรวจรอบบัส) ↗', routeUrl('hakata', 'torius'), 'button'), link('Torius → Hakata ↗', routeUrl('torius', 'hakata'), 'button'), link('ข้อมูลร้าน Torius ↗', 'https://store.montbell.jp/search/shopinfo/?shop_no=618858', 'button'));
+  }
   renderTimeline($('#timeline'), day.date); renderDayMap(); updateDayProgress(); renderPrint();
 }
 function renderFilters() {
@@ -155,6 +172,7 @@ function renderPlaces(category = 'ทั้งหมด') {
     card.style.setProperty('--row-index', String(index));
     card.append(element('span', 'eyebrow', poi[2]), element('h3', '', poi[0]), element('p', '', PLACE_NOTES[id] || 'หมุดคำค้นจากแผน · ตรวจตำแหน่ง เวลาเปิด และการเดินทางจริงก่อนออก'), link('เปิดใน Google Maps ↗', mapUrl(id), ''));
     if (id === 'shinshin') card.append(link('ดูสาขาจากเว็บ Shin Shin ↗', 'https://www.hakata-shinshin.com/tenpo_tenjin', ''));
+    if (id === 'torius') card.append(link('ข้อมูลร้านและ Factory Outlet ↗', 'https://store.montbell.jp/search/shopinfo/?shop_no=618858', ''));
     $('#place-list').append(card);
   });
   document.querySelectorAll('[data-category]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === category)));
@@ -183,6 +201,41 @@ function renderBookings() {
   });
   updateBookingProgress();
 }
+function renderWishes() {
+  const list = $('#wish-list'); list.replaceChildren();
+  $('#wish-progress').textContent = `ทำแล้ว ${state.wishes.filter(item => item.done).length} / ${state.wishes.length}`;
+  if (!state.wishes.length) list.append(element('li', 'wish-empty', 'ยังไม่มีรายการ เติมสิ่งที่อยากทำด้านบนได้เลย'));
+  state.wishes.forEach(item => {
+    const row = element('li', `wish-item${item.done ? ' is-done' : ''}`);
+    const label = element('label', 'task-label'); const checkbox = element('input', ''); checkbox.type = 'checkbox'; checkbox.checked = item.done;
+    checkbox.addEventListener('change', () => {
+      item.done = checkbox.checked; save();
+      row.classList.toggle('is-done', item.done);
+      $('#wish-progress').textContent = `ทำแล้ว ${state.wishes.filter(wish => wish.done).length} / ${state.wishes.length}`;
+      renderPrint();
+    });
+    label.append(checkbox, element('span', '', item.text));
+    const remove = element('button', 'text-button wish-delete', 'ลบ'); remove.type = 'button'; remove.setAttribute('aria-label', `ลบรายการ ${item.text}`);
+    remove.addEventListener('click', () => {
+      const index = state.wishes.indexOf(item);
+      state.wishes = state.wishes.filter(wish => wish.id !== item.id); save(); renderWishes(); renderPrint();
+      const undo = element('button', 'text-button', 'เลิกทำ'); undo.type = 'button';
+      undo.addEventListener('click', () => {
+        state.wishes.splice(Math.min(index, state.wishes.length), 0, item); save(); renderWishes(); renderPrint();
+        $('#wish-message').textContent = 'คืนรายการแล้ว'; $('#wish-input').focus();
+      });
+      $('#wish-message').replaceChildren(document.createTextNode('ลบรายการแล้ว '), undo); $('#wish-input').focus();
+    });
+    row.append(label, remove); list.append(row);
+  });
+}
+$('#wish-form').addEventListener('submit', event => {
+  event.preventDefault(); const input = $('#wish-input'); const text = input.value.trim();
+  if (!text) { $('#wish-message').textContent = 'กรอกสิ่งที่อยากทำก่อนเพิ่มรายการ'; input.focus(); return; }
+  state.wishes.push({ id: `wish-${window.crypto.randomUUID()}`, text: text.slice(0, 300), done: false });
+  save(); renderWishes(); renderPrint(); input.value = ''; input.focus();
+  $('#wish-message').textContent = storageAvailable ? 'เพิ่มรายการแล้ว' : 'เพิ่มรายการเฉพาะรอบนี้ ยังบันทึกลงเครื่องไม่ได้';
+});
 function renderPrint() {
   const container = $('#print-plan'); container.replaceChildren();
   container.append(element('h1', '', 'Fukuoka / Kyushu · 17–23 ธ.ค. 2026'), element('p', '', 'ผู้ใหญ่ 2 คน · สถานะตามสรุปผู้ใช้ ยังไม่ได้ตรวจ voucher / Gmail / ตารางจริง'));
@@ -205,6 +258,9 @@ function renderPrint() {
   BOOKINGS.forEach(item => pending.append(element('p', '', `${state.done[`booking-${item.id}`] ? '☑' : '☐'} ${item.title} — ${item.note}`)));
   pending.append(element('p', '', 'ทำแล้วตามผู้ใช้แจ้ง: มี eSIM, ยื่นขอใบขับขี่สากล, กรอก Guest Information Beppu · ยืนยันการรับเล่ม IDP แยกอีกครั้ง'));
   container.append(pending);
+  const wishes = element('article', 'print-pending'); wishes.append(element('h2', '', 'To-do · สิ่งที่อยากทำในทริปนี้'));
+  state.wishes.forEach(item => wishes.append(element('p', '', `${item.done ? '☑' : '☐'} ${item.text}`)));
+  container.append(wishes);
 }
 document.querySelectorAll('[data-plan]').forEach(button => button.addEventListener('click', () => { state.plan = button.dataset.plan; save(); renderDay(); }));
 $('#print-trip').addEventListener('click', () => { renderPrint(); window.print(); });
@@ -244,4 +300,4 @@ function startSignatureRoute() {
     finish();
   });
 }
-renderDays(); renderDay(); renderFilters(); renderPlaces('อาหาร'); renderStays(); renderBookings(); updateStorageStatus(); startSignatureRoute();
+renderDays(); renderDay(); renderFilters(); renderPlaces('อาหาร'); renderStays(); renderBookings(); renderWishes(); updateStorageStatus(); startSignatureRoute();
