@@ -6,6 +6,7 @@ const POIS = {
   airport: ['Fukuoka Airport · International', 'Fukuoka Airport International Terminal', 'สถานที่'],
   hakata: ['Hakata Station', 'Hakata Station Fukuoka', 'สถานที่'],
   en: ['EN HOTEL Hakata', 'EN HOTEL Hakata Fukuoka', 'ที่พัก'],
+  torius: ['mont-bell Torius Store · ต้องไป', 'モンベル トリアス店 福岡県糟屋郡久山町山田1238', 'ช้อปปิ้ง'],
   nanzoin: ['Nanzoin', 'Nanzoin Sasaguri Fukuoka', 'สถานที่'],
   market: ['Hakata Christmas Market', 'Hakata Station Christmas Market', 'สถานที่'],
   yatai: ['Nakasu yatai', 'Nakasu Yatai Fukuoka', 'อาหาร'],
@@ -39,9 +40,10 @@ const POIS = {
 };
 const activity = (id, time, title, description, transport, poi = null, status = 'แผนร่าง') => ({ id, time, title, description, transport, poi, status });
 const DAYS = [
-  { date: 17, weekday: 'พฤหัส', tag: 'Hakata', title: 'สวัสดี Fukuoka · ฝากกระเป๋าแล้วค่อยเที่ยว', description: 'นอน Hakata · เวลาเที่ยวบินรอตรวจจากตั๋ว', mode: 'transit', origin: 'airport', destination: 'hakata', routeLabel: 'สนามบิน → Hakata', routeNote: 'รถรับส่ง International → Domestic ก่อนขึ้น Subway Airport Line', stops: [
+  { date: 17, weekday: 'พฤหัส', tag: 'Hakata / Torius', title: 'ถึง Fukuoka · mont-bell Torius · ไฟคริสต์มาส', description: 'นอน Hakata · Torius เป็นจุดต้องไป ซื้อเสื้อก่อนออก Aso · เวลาเที่ยวบินรอตรวจจากตั๋ว', mode: 'transit', origin: 'airport', destination: 'hakata', routeLabel: 'สนามบิน → Hakata', routeNote: 'ฝากกระเป๋าที่ Hakata ก่อนเดินทางไป Torius แล้วกลับ Hakata ช่วงเย็น ตรวจรอบบัสไป–กลับก่อนออก ไม่ฝืนเพิ่ม Nanzoin หากเวลาไม่พอ', stops: [
     activity('arrival-v2', 'หลังลงเครื่อง', 'เข้าเมือง & ฝากกระเป๋าที่ Hakata', 'รอตรวจ: TG648 BKK 01:00 → FUK 08:10 เป็นข้อมูลจากร่าง ยังไม่ได้ตรวจตั๋ว ชื่อ EN HOTEL Hakata ต้องเทียบอีเมลอีกครั้ง', 'รถรับส่งไป Domestic → Subway → Hakata', 'en', 'รอตรวจ'),
-    activity('nanzoin', 'ถ้ามีแรง', 'Nanzoin · ตัวเลือกหลังเดินทาง', 'ไปเฉพาะถ้าเวลาและพลังงานพอ ไม่จำเป็นต้องฝืนหลังเที่ยวบิน', 'JR Hakata → Kido-Nanzoin-mae → เดิน แล้วกลับเส้นเดิม', 'nanzoin', 'ตัวเลือก'),
+    activity('torius-montbell', 'หลังฝากกระเป๋า', 'ต้องไป · mont-bell Torius Store', 'ไปหาเสื้อดาวน์ราคา Factory Outlet ก่อนออก Aso ร้านมีทั้งสินค้าปกติและ Outlet ต้องดูป้ายราคาของตัวจริง เป้าหมายสีดำ BK: US Superior Down Jacket #2301377 ไม่มีฮู้ด 800 FP; รุ่นมีฮู้ด #2301375 เป็นอีกตัวเลือก ลองไซซ์ US กับเสื้อด้านใน เช็กสต็อกสี/ไซซ์และราคา Outlet ก่อนเดินทาง ยังไม่ยืนยันว่ามีของ', 'Hakata → ต่อรถไป Torius Hisayama · ตรวจรอบไป–กลับ เผื่อเวลาลองเสื้อ 60–90 นาที', 'torius', 'ต้องไป · รอเช็กสต็อก'),
+    activity('nanzoin', 'ถ้าเหลือเวลา', 'Nanzoin · ตัวเลือกหลัง Torius', 'ให้ Torius มาก่อน ไปเฉพาะถ้าเวลา การเดินทาง และพลังงานพอ ไม่ต้องฝืนหลังเที่ยวบิน', 'ตรวจเส้นทางจากจุดที่อยู่จริงก่อนออก แล้วกลับ Hakata', 'nanzoin', 'ตัวเลือก'),
     activity('hakata-market', 'เย็น', 'Hakata Christmas Market', 'เดินตลาดและชมไฟ รอตรวจกำหนดการและเวลาเปิดปี 2026', 'เดินบริเวณสถานี Hakata', 'market', 'รอตรวจ'),
     activity('yatai-v2', 'ค่ำ', 'ราเมนหรือยาตาอิตามสะดวก', 'เลือกร้านตามความหิวและคิว เตรียมเงินสดสำหรับร้านเล็ก', 'เดิน / รถไฟใต้ดิน', 'yatai')
   ] },
@@ -120,6 +122,7 @@ const BOOKINGS = [
   { id: 'flight-v2', title: 'ตรวจเที่ยวบินและชื่อโรงแรม Hakata จากตั๋ว/อีเมล', note: 'TG648/TG649 และเวลาจากร่างยังไม่ได้ยืนยันใน session นี้' }
 ];
 const PLACE_NOTES = {
+  torius: 'ต้องไป · วางไว้ 17 ธ.ค. เพื่อซื้อดาวน์ก่อนออก Aso มีโซน Factory Outlet และสินค้าปกติในร้านเดียวกัน เปิด 10:00–20:00 ตามเว็บร้าน เป้าหมายสีดำ BK รุ่น #2301377 ไม่มีฮู้ด / #2301375 มีฮู้ด 800 FP ยังต้องเช็กสต็อกไซซ์และราคา Outlet ของตัวจริงก่อนเดินทาง',
   shinshin: 'อยากไป · วางไว้เย็น 22 ธ.ค. หลังกลับจาก Tosu สาขา Tenjin Honten ที่อยู่ตามเว็บร้าน Tenjin 3-2-19 ตรวจเวลาเปิดและคิวอีกครั้งก่อนเดินทาง',
   relax: 'หมุดรับ–คืนที่ผู้ใช้ยืนยัน · 19 ธ.ค. 12:00 → 21 ธ.ค. 12:00 ส่วนรุ่นรถ ประกัน ยางฤดูหนาว ETC และค่าเพิ่มยังรอตรวจ voucher',
   takachiho: 'รอตัดสินใจ · ผู้ใช้ยังไม่ได้ยกเลิก หากใส่กลับต้องจัดวัน Aso ใหม่',

@@ -16,13 +16,23 @@ Shin Shin ramen อยู่ในรายการอยากไปและ�
 
 | วัน | แผนและแผนที่ในเว็บ |
 |---|---|
-| 17 ธ.ค. | [สนามบิน / Hakata / Nanzoin](https://iahc-chai.github.io/Fukuoka2026/?day=17#itinerary) |
+| 17 ธ.ค. | [สนามบิน / Hakata / mont-bell Torius / Nanzoin ถ้าเหลือเวลา](https://iahc-chai.github.io/Fukuoka2026/?day=17#itinerary) |
 | 18 ธ.ค. | [Kokura / Karato / Outlet / Mojiko](https://iahc-chai.github.io/Fukuoka2026/?day=18#itinerary) |
 | 19 ธ.ค. | [Relax / Fruitelier / Kumamoto](https://iahc-chai.github.io/Fukuoka2026/?day=19#itinerary) |
 | 20 ธ.ค. | [Aso / Akaushi / Beppu](https://iahc-chai.github.io/Fukuoka2026/?day=20#itinerary) |
 | 21 ธ.ค. | [คืนรถ / LaLaport / Momochi / Tenjin](https://iahc-chai.github.io/Fukuoka2026/?day=21#itinerary) |
 | 22 ธ.ค. | [Dazaifu / Tosu / Shin Shin](https://iahc-chai.github.io/Fukuoka2026/?day=22#itinerary) |
 | 23 ธ.ค. | [THE KNOT / สนามบิน](https://iahc-chai.github.io/Fukuoka2026/?day=23#itinerary) |
+
+## Torius และ To-do ที่เติมเองได้
+
+- 17 ธ.ค. เพิ่ม **mont-bell Torius Store เป็นจุดต้องไป** หลังฝากกระเป๋า เพื่อซื้อเสื้อก่อนออก Aso ส่วน Nanzoin เป็นตัวเลือกถ้าเหลือเวลา
+- ร้านขายทั้งสินค้าปกติและ Factory Outlet ต้องเช็กป้ายราคา สีดำ BK และไซซ์ของตัวจริง ไม่รับรองว่าทุกตัวลดราคา หรือราคาทุกสาขาเท่ากัน
+- เป้าหมาย: US Superior Down Jacket #2301377 ไม่มีฮู้ด 800 FP; รุ่นมีฮู้ด #2301375 เป็นตัวเลือก ไซซ์ US ต้องลองกับเสื้อด้านใน ราคา Outlet และสต็อกยังต้องเช็กก่อนเดินทาง
+- [ข้อมูลร้าน Torius](https://store.montbell.jp/search/shopinfo/?shop_no=618858) · [รุ่นไม่มีฮู้ด](https://webshop.montbell.jp/goods/disp.php?product_id=2301377) · [รุ่นมีฮู้ด](https://webshop.montbell.jp/goods/disp.php?product_id=2301375)
+- [เปิด To-do](https://iahc-chai.github.io/Fukuoka2026/#wishlist): เพิ่มข้อความ ติ๊กเสร็จ และลบรายการได้ มีรายการเริ่มต้นเรื่อง Torius และการลองเสื้อ พิมพ์รวมไปกับแผนได้
+- To-do บันทึกใน localStorage เดิมโดยคงสถานะเก่าไว้ ไม่ซิงก์ข้ามเครื่องหรือเบราว์เซอร์ การเพิ่ม To-do ยังไม่จัดลงวันให้อัตโนมัติ และการรีเซ็ตเช็กลิสต์เดิมไม่ลบ To-do
+- ตรวจเลย์เอาต์จำลองขนาด iPhone/iPad ทั้งแนวตั้งและแนวนอน 375–1366px แล้ว รวมการเพิ่มผ่าน Enter, ติ๊กเสร็จ, โหลดซ้ำ, ลบ และเลิกทำ มีพื้นที่แตะ To-do อย่างน้อย 44px และทางสำรองเมื่อ Safari ไม่มี `crypto.randomUUID` ยังไม่ได้ทดสอบบนอุปกรณ์ Apple จริง รายการใน iPhone และ iPad เก็บแยกกัน
 
 ## คู่มือ GitHub Workflow แบบกดดูได้
 
