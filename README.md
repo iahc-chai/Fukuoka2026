@@ -32,6 +32,7 @@ Shin Shin ramen อยู่ในรายการอยากไปและ�
 - [ข้อมูลร้าน Torius](https://store.montbell.jp/search/shopinfo/?shop_no=618858) · [รุ่นไม่มีฮู้ด](https://webshop.montbell.jp/goods/disp.php?product_id=2301377) · [รุ่นมีฮู้ด](https://webshop.montbell.jp/goods/disp.php?product_id=2301375)
 - [เปิด To-do](https://iahc-chai.github.io/Fukuoka2026/#wishlist): เพิ่มข้อความ ติ๊กเสร็จ และลบรายการได้ มีรายการเริ่มต้นเรื่อง Torius และการลองเสื้อ พิมพ์รวมไปกับแผนได้
 - To-do บันทึกใน localStorage เดิมโดยคงสถานะเก่าไว้ ไม่ซิงก์ข้ามเครื่องหรือเบราว์เซอร์ การเพิ่ม To-do ยังไม่จัดลงวันให้อัตโนมัติ และการรีเซ็ตเช็กลิสต์เดิมไม่ลบ To-do
+- ตรวจเลย์เอาต์จำลองขนาด iPhone/iPad ทั้งแนวตั้งและแนวนอน 375–1366px แล้ว รวมการเพิ่มผ่าน Enter, ติ๊กเสร็จ, โหลดซ้ำ, ลบ และเลิกทำ มีพื้นที่แตะ To-do อย่างน้อย 44px และทางสำรองเมื่อ Safari ไม่มี `crypto.randomUUID` ยังไม่ได้ทดสอบบนอุปกรณ์ Apple จริง รายการใน iPhone และ iPad เก็บแยกกัน
 
 ## คู่มือ GitHub Workflow แบบกดดูได้
 

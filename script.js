@@ -232,7 +232,10 @@ function renderWishes() {
 $('#wish-form').addEventListener('submit', event => {
   event.preventDefault(); const input = $('#wish-input'); const text = input.value.trim();
   if (!text) { $('#wish-message').textContent = 'กรอกสิ่งที่อยากทำก่อนเพิ่มรายการ'; input.focus(); return; }
-  state.wishes.push({ id: `wish-${window.crypto.randomUUID()}`, text: text.slice(0, 300), done: false });
+  const id = window.crypto && typeof window.crypto.randomUUID === 'function'
+    ? window.crypto.randomUUID()
+    : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+  state.wishes.push({ id: `wish-${id}`, text: text.slice(0, 300), done: false });
   save(); renderWishes(); renderPrint(); input.value = ''; input.focus();
   $('#wish-message').textContent = storageAvailable ? 'เพิ่มรายการแล้ว' : 'เพิ่มรายการเฉพาะรอบนี้ ยังบันทึกลงเครื่องไม่ได้';
 });
