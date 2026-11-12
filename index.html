@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#101a1b">
 <meta name="description" content="Our Wishlist — สิ่งที่ Chai และ Care อยากกิน อยากไป และต้องไม่ลืมในทริป Fukuoka 2026">
 <title>Our Wishlist ♡ · Fukuoka 2026</title>
-<link rel="stylesheet" href="home.css?v=20261112-sync2">
+<link rel="stylesheet" href="home.css?v=20261112-sync3">
 <script>
 (function () {
   const p=new URLSearchParams(location.search);
@@ -16,8 +16,8 @@
   }
 })();
 </script>
-<script src="sync.js?v=20261112-sync2" defer></script>
-<script src="home.js?v=20261112-sync2" defer></script>
+<script src="sync.js?v=20261112-sync3" defer></script>
+<script src="home.js?v=20261112-sync3" defer></script>
 </head>
 <body>
 <a class="skip" href="#new-entry">ข้ามไปเพิ่มรายการ</a>
@@ -39,6 +39,7 @@
    <p class="help">ใช้รหัสผ่านเดียวกันทั้งสองเครื่อง · เชื่อมต่อกับรายการทริปเดิมให้อัตโนมัติ</p>
    <button type="submit">เชื่อมต่อ</button><button type="button" id="disconnect-button">ออกจากการเชื่อมต่อ</button>
   </form>
+  <p id="connection-message" role="status" aria-live="polite">ใส่ค่าจากช่อง Value ของ WISHLIST_KEY แล้วกดเชื่อมต่อ</p>
  </details>
  <div class="sync-actions"><button type="button" id="refresh-button">↻ Sync now</button><button type="button" id="import-button" hidden>Import local notes once</button></div>
  <div class="workspace-grid">

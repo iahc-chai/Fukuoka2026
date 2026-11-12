@@ -16,7 +16,7 @@ function load() {
 }
 let store=load(), filter='all', cloud=null, client=null, busy=false, connecting=false, draft=readDraft();
 const MIGRATED_KEY='fukuoka-cloud-import-v1';
-function notice(title,description){$('#sync-title').textContent=title;$('#sync-description').textContent=description;}
+function notice(title,description){$('#sync-title').textContent=title;$('#sync-description').textContent=description;$('#connection-message').textContent=title+' · '+description;}
 function readDraft(){try{return JSON.parse(sessionStorage.getItem('fukuoka-pending-add')||'null')}catch{return null}}
 function sessionRead(key){try{return sessionStorage.getItem(key)||''}catch{return ''}}
 function sessionSave(key,value){try{sessionStorage.setItem(key,value)}catch{}}
@@ -144,17 +144,18 @@ async function mutate(payload){
 $('#sync-key').value=sessionRead('fukuoka-key');
 async function connect(){
   if(busy||connecting)return;
-  connecting=true;controls();notice('กำลังเชื่อมต่อ…','ยังไม่เปลี่ยนรายการในเครื่อง');
+  connecting=true;controls();notice('กำลังเชื่อมต่อ…','ขั้นที่ 1/2 กำลังเปิดบริการ Google · รอไม่เกิน 20 วินาที');
   client?.close();cloud=null;
   client=new WishlistSync(WISHLIST_ENDPOINT,$('#sync-key').value.trim());
   try{
-    await client.connect();const result=await client.request({action:'list'});cloud=result.items;
+    await client.connect();notice('กำลังเชื่อมต่อ…','ขั้นที่ 2/2 ตรวจรหัสผ่านและอ่านรายการจาก Sheet');const result=await client.request({action:'list'});cloud=result.items;
     sessionSave('fukuoka-key',client.key);
     notice('Google Sheets · ซิงก์แล้ว','ใช้รายการร่วมกัน · รายการในเครื่องยังอยู่ กด Import เมื่อต้องการ');
     $('.sync-settings').open=false;
-  }catch(e){client.close();client=null;notice('เชื่อมต่อไม่สำเร็จ',e.message+' · กำลังแสดงรายการเฉพาะเครื่อง');}
+  }catch(e){client.close();client=null;notice('เชื่อมต่อไม่สำเร็จ',(e.message==='Not authorized'?'รหัสผ่านไม่ตรงกับ WISHLIST_KEY ของ deployment นี้ · คัดลอกจากช่อง Value ไม่ใช่ชื่อ Property':e.message)+' · รายการยังอยู่เฉพาะเครื่อง');}
   finally{connecting=false;controls();render();updateImport();}
 }
+$('#sync-key').addEventListener('invalid',()=>notice('ยังไม่ได้ส่งรหัสผ่าน','กรุณาใส่ค่าจากช่อง Value ของ WISHLIST_KEY ให้ครบอย่างน้อย 32 ตัวอักษร'));
 $('#sync-form').addEventListener('submit',e=>{e.preventDefault();connect()});
 $('#refresh-button').addEventListener('click',refresh);
 $('#disconnect-button').addEventListener('click',()=>{

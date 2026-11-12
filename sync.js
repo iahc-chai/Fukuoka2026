@@ -18,7 +18,7 @@ class WishlistSync {
       if(task){this.pending.delete(d.requestId);clearTimeout(task.timer);d.result&&d.result.ok?task.resolve(d.result):task.reject(new Error(d.result?.error||'Invalid server reply'));}
     };
     window.addEventListener('message',this.listener);
-    const ready=new Promise((resolve,reject)=>{this.onReady=resolve;this.readyTimer=setTimeout(()=>reject(new Error('เชื่อมต่อไม่ได้ · ตรวจ deployment / การอนุญาต Google')),20000)});
+    const ready=new Promise((resolve,reject)=>{this.onReady=resolve;this.readyTimer=setTimeout(()=>reject(new Error('เปิดบริการ Google ไม่สำเร็จภายใน 20 วินาที (G01) · ยังไม่ได้ตรวจรหัสผ่าน')),20000)});
     this.frame=document.createElement('iframe');this.frame.hidden=true;this.frame.title='Google Sheets sync';
     url.searchParams.set('bridge',this.bridgeId);this.frame.src=url.href;document.body.append(this.frame);
     try {await ready;} finally {clearTimeout(this.readyTimer);}
