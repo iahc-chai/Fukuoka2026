@@ -14,8 +14,16 @@ function load() {
   const extra = read(EXTRA_KEY);
   return {legacy, extra: extra && typeof extra==='object' ? extra : {meta:{},reminders:[]}};
 }
-let store=load(), filter='all';
-function entries() {
+let store=load(), filter='all', cloud=null, client=null, busy=false, connecting=false, draft=readDraft();
+const MIGRATED_KEY='fukuoka-cloud-import-v1';
+function notice(title,description){$('#sync-title').textContent=title;$('#sync-description').textContent=description;}
+function readDraft(){try{return JSON.parse(sessionStorage.getItem('fukuoka-pending-add')||'null')}catch{return null}}
+function sessionRead(key){try{return sessionStorage.getItem(key)||''}catch{return ''}}
+function sessionSave(key,value){try{sessionStorage.setItem(key,value)}catch{}}
+function localEntries(){return entries(true)}
+
+function entries(localOnly=false) {
+  if(cloud!==null&&!localOnly)return cloud;
   const wishes=(Array.isArray(store.legacy.wishes)?store.legacy.wishes:defaults).filter(x=>x&&typeof x.id==='string'&&typeof x.text==='string');
   const reminders=(Array.isArray(store.extra.reminders)?store.extra.reminders:[]).filter(x=>x&&typeof x.id==='string'&&typeof x.text==='string');
   const meta=store.extra.meta||{};
@@ -42,7 +50,7 @@ function render(){
   for(const x of shown){
     const li=document.createElement('li'); li.className='entry'+(x.done?' is-done':'');
     const check=document.createElement('input'); check.className='done-toggle';check.type='checkbox';check.checked=Boolean(x.done);check.setAttribute('aria-label','Done: '+x.text);
-    check.addEventListener('change',()=>{setDone(x.id,x.type,check.checked);render()});
+    check.disabled=busy||connecting;check.addEventListener('change',async()=>{await setDone(x.id,x.type,check.checked);render()});
     const main=document.createElement('div');main.className='entry-main';
     const title=document.createElement('p');title.className='entry-title';title.textContent=x.text;
     const meta=document.createElement('div');meta.className='entry-meta';
@@ -52,16 +60,18 @@ function render(){
     }
     main.append(title,meta);
     const rm=document.createElement('button');rm.className='entry-remove';rm.type='button';rm.setAttribute('aria-label','ลบ '+x.text);rm.textContent='×';
-    rm.addEventListener('click',()=>{if(confirm('ลบรายการนี้?')){remove(x.id,x.type);render()}});
+    rm.disabled=busy||connecting;rm.addEventListener('click',async()=>{if(confirm('ลบรายการนี้?')){await remove(x.id,x.type);render()}});
     li.append(check,main,rm);$('.entries').append(li);
   }
 }
-function setDone(id,type,done){
+async function setDone(id,type,done){
+  if(client){await mutate({action:"done",id,done});return;}
   if(type==='wish'){store.legacy.wishes=(store.legacy.wishes||[]).map(x=>x.id===id?{...x,done}:x)}
   else {store.extra.reminders=(store.extra.reminders||[]).map(x=>x.id===id?{...x,done}:x)}
   save();
 }
-function remove(id,type){
+async function remove(id,type){
+  if(client){await mutate({action:"delete",id});return;}
   if(type==='wish'){store.legacy.wishes=(store.legacy.wishes||[]).filter(x=>x.id!==id);if(store.extra.meta)delete store.extra.meta[id]}
   else store.extra.reminders=(store.extra.reminders||[]).filter(x=>x.id!==id);
   save();
@@ -72,13 +82,21 @@ document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click'
   render();
 }));
 document.querySelectorAll('[data-example]').forEach(b=>b.addEventListener('click',()=>{$('#entry-text').value=b.dataset.example;$('#entry-text').focus()}));
-$('#entry-form').addEventListener('submit',event=>{
+$('#entry-form').addEventListener('submit',async event=>{
   event.preventDefault();
   const text=$('#entry-text').value.trim();
   if(!text)return;
   const type=document.querySelector('[name="type"]:checked').value;
   const author=$('#entry-author').value,category=$('#entry-category').value,day=$('#entry-day').value;
   const id='wish-'+(crypto&&crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2));
+  if(client){
+    if(busy||connecting)return;
+    const data={text:text.slice(0,300),type,author,category,day};
+    if(!draft || JSON.stringify(draft.data)!==JSON.stringify(data))draft={id,data};
+    sessionSave('fukuoka-pending-add',JSON.stringify(draft));
+    if(await mutate({action:'add',id:draft.id,...data,done:false})){draft=null;sessionSave('fukuoka-pending-add','');$('#entry-text').value='';}
+    return;
+  }
   if(type==='wish'){
     if(!Array.isArray(store.legacy.wishes))store.legacy.wishes=defaults.slice();
     store.legacy.wishes.push({id,text:text.slice(0,300),done:false});
@@ -94,5 +112,75 @@ $('#export-button').addEventListener('click',()=>{
   const blob=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),items:entries()},null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='fukuoka-our-wishlist.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
-window.addEventListener('storage',ev=>{if(ev.key===LEGACY_KEY||ev.key===EXTRA_KEY){store=load();render()}});
-render();
+window.addEventListener('storage',ev=>{if(ev.key===LEGACY_KEY||ev.key===EXTRA_KEY){store=load();render();updateImport()}});
+function controls(){
+  $('#entry-form button[type="submit"]').disabled=busy||connecting;
+  $('#refresh-button').disabled=busy||connecting||!client;
+  $('#import-button').disabled=busy||connecting;
+  $('#sync-form button[type="submit"]').disabled=busy||connecting;
+  $('#disconnect-button').disabled=busy||connecting;
+}
+function updateImport(){
+  const marker=read(MIGRATED_KEY)||{};
+  $('#import-button').hidden=!client||cloud===null||marker[client.endpoint]===true||!localEntries().length;
+}
+async function refresh(){
+  if(!client||busy||connecting)return;
+  busy=true;controls();
+  try{const result=await client.request({action:'list'});cloud=result.items;notice('Google Sheets · ซิงก์แล้ว',new Date().toLocaleTimeString()+' · อัปเดตทุก 20 วินาที');}
+  catch(e){notice(navigator.onLine?'ซิงก์ไม่สำเร็จ':'ออฟไลน์',e.message+' · รายการที่แสดงอาจเก่า');}
+  finally{busy=false;controls();render();updateImport();}
+}
+async function mutate(payload){
+  if(busy||connecting)return false;
+  busy=true;controls();render();$('#form-message').textContent='กำลังบันทึก…';
+  try{
+    const result=await client.request(payload);cloud=result.items;
+    $('#form-message').textContent='Google Sheets ยืนยันการบันทึกแล้ว';
+    notice('Google Sheets · ซิงก์แล้ว','บันทึกและอ่านรายการกลางสำเร็จ');return true;
+  }catch(e){$('#form-message').textContent='ยังยืนยันการบันทึกไม่ได้ · '+e.message;notice('บันทึกยังไม่ยืนยัน','กด Sync เพื่อตรวจรายการก่อนลองใหม่');return false;}
+  finally{busy=false;controls();render();updateImport();}
+}
+$('#sync-endpoint').value=sessionRead('fukuoka-endpoint')||WISHLIST_ENDPOINT;
+$('#sync-key').value=sessionRead('fukuoka-key');
+async function connect(){
+  if(busy||connecting)return;
+  connecting=true;controls();notice('กำลังเชื่อมต่อ…','ยังไม่เปลี่ยนรายการในเครื่อง');
+  client?.close();cloud=null;
+  client=new WishlistSync($('#sync-endpoint').value.trim(),$('#sync-key').value);
+  try{
+    await client.connect();const result=await client.request({action:'list'});cloud=result.items;
+    sessionSave('fukuoka-endpoint',client.endpoint);sessionSave('fukuoka-key',client.key);
+    notice('Google Sheets · ซิงก์แล้ว','ใช้รายการร่วมกัน · รายการในเครื่องยังอยู่ กด Import เมื่อต้องการ');
+    $('.sync-settings').open=false;
+  }catch(e){client.close();client=null;notice('เชื่อมต่อไม่สำเร็จ',e.message+' · กำลังแสดงรายการเฉพาะเครื่อง');}
+  finally{connecting=false;controls();render();updateImport();}
+}
+$('#sync-form').addEventListener('submit',e=>{e.preventDefault();connect()});
+$('#refresh-button').addEventListener('click',refresh);
+$('#disconnect-button').addEventListener('click',()=>{
+  if(busy||connecting)return;
+  client?.close();client=null;cloud=null;draft=null;sessionSave('fukuoka-key','');$('#sync-key').value='';
+  notice('บันทึกบนเครื่องนี้','ยังไม่ได้ซิงก์ · เชื่อมต่อ Google Sheets เพื่อใช้รายการร่วมกัน');controls();render();updateImport();
+});
+$('#import-button').addEventListener('click',async()=>{
+  if(!client||busy||connecting||!confirm('นำรายการในเครื่องนี้เข้า Google Sheets? สำเนาเดิมจะเก็บไว้ และ ID เดิมจะไม่ถูกเพิ่มซ้ำ'))return;
+  const items=localEntries(), ledger=read('fukuoka-imported-ids-v1')||{}, endpoint=client.endpoint;
+  const imported=ledger[endpoint]||[];
+  for(const x of items){
+    if(imported.includes(x.id))continue;
+    if(!await mutate({action:'add',id:x.id,type:x.type,text:x.text,author:x.author||'Chai',category:x.category||'other',day:x.day||'any',done:!!x.done}))return;
+    imported.push(x.id);ledger[endpoint]=imported;
+    try{localStorage.setItem('fukuoka-imported-ids-v1',JSON.stringify(ledger));}catch{}
+  }
+  const marker=read(MIGRATED_KEY)||{};marker[client.endpoint]=true;
+  try{localStorage.setItem(MIGRATED_KEY,JSON.stringify(marker));}catch{}
+  updateImport();$('#form-message').textContent='นำเข้าครบแล้ว · เก็บสำเนาเดิมในเครื่องไว้';
+});
+window.addEventListener('online',refresh);
+window.addEventListener('offline',()=>notice('ออฟไลน์','แสดงรายการล่าสุด · ยังไม่สามารถยืนยันการบันทึกได้'));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+setInterval(()=>{if(!document.hidden)refresh()},20000);
+if(draft?.data){$('#entry-text').value=draft.data.text;$('#entry-author').value=draft.data.author;$('#entry-category').value=draft.data.category;$('#entry-day').value=draft.data.day;document.querySelector('[name="type"][value="'+draft.data.type+'"]').checked=true;}
+controls();render();
+if($('#sync-endpoint').value&&$('#sync-key').value)connect();

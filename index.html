@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#101a1b">
 <meta name="description" content="Our Wishlist — สิ่งที่ Chai และ Care อยากกิน อยากไป และต้องไม่ลืมในทริป Fukuoka 2026">
 <title>Our Wishlist ♡ · Fukuoka 2026</title>
-<link rel="stylesheet" href="home.css?v=20261112">
+<link rel="stylesheet" href="home.css?v=20261112-sync1">
 <script>
 (function () {
   const p=new URLSearchParams(location.search);
@@ -16,7 +16,8 @@
   }
 })();
 </script>
-<script src="home.js?v=20261112" defer></script>
+<script src="sync.js?v=20261112-sync1" defer></script>
+<script src="home.js?v=20261112-sync1" defer></script>
 </head>
 <body>
 <a class="skip" href="#new-entry">ข้ามไปเพิ่มรายการ</a>
@@ -31,6 +32,17 @@
 </section>
 <section class="workspace" aria-label="Our wishlist and reminders">
  <div class="workspace-top"><div><p class="eyebrow">THE LITTLE THINGS THAT MATTER</p><h2>Things we don't want to miss.</h2></div><a class="route-link" href="plan.html">OPEN THE 7-DAY TRIP PLAN <span aria-hidden="true">↗</span></a></div>
+ <details class="sync-settings"><summary>Google Sheets · เชื่อมต่อรายการร่วมกัน</summary>
+  <form id="sync-form">
+   <label class="field-label" for="sync-endpoint">Apps Script production /exec URL</label>
+   <input id="sync-endpoint" type="url" required placeholder="https://script.google.com/macros/s/…/exec">
+   <label class="field-label" for="sync-key">Private access key · กรอกบนเครื่องนี้เท่านั้น</label>
+   <input id="sync-key" type="password" required minlength="32" autocomplete="off">
+   <p class="help">คีย์เก็บเฉพาะแท็บนี้ ไม่ใส่ใน URL หรือ GitHub · ใช้สำหรับโน้ตท่องเที่ยวเท่านั้น</p>
+   <button type="submit">Connect</button><button type="button" id="disconnect-button">Disconnect</button>
+  </form>
+ </details>
+ <div class="sync-actions"><button type="button" id="refresh-button">↻ Sync now</button><button type="button" id="import-button" hidden>Import local notes once</button></div>
  <div class="workspace-grid">
   <section class="editor-card" id="new-entry" aria-labelledby="editor-title">
    <div class="card-heading"><span class="card-index">01 / ADD A NOTE</span><span aria-hidden="true">✳</span></div>
@@ -63,7 +75,7 @@
     <div class="list-bottom"><button type="button" id="export-button">↓ EXPORT MY LIST</button><span id="entry-count">0 ITEMS</span></div>
   </section>
  </div>
- <div class="sync-note" role="status"><span class="sync-dot"></span><p><strong id="sync-title">บันทึกบนเครื่องนี้</strong><span id="sync-description">ตอนนี้รายการยังไม่ซิงก์ข้ามมือถือ Google Sheet สำหรับรายการกลางสร้างแล้ว แต่ต้องตั้งค่า Google Apps Script ก่อน</span></p></div>
+ <div class="sync-note" role="status"><span class="sync-dot"></span><p><strong id="sync-title">บันทึกบนเครื่องนี้</strong><span id="sync-description">เปิด Google Sheets ด้านบน ใส่ Private access key แล้วกด Connect เพื่อใช้รายการร่วมกัน · ก่อนเชื่อมต่อ รายการจะอยู่เฉพาะเครื่องนี้</span></p></div>
 </section>
 <section class="plan-teaser"><div><p class="eyebrow">THE REST OF THE JOURNEY</p><h2>Seven days. One route.</h2><p>Hakata → Kurume → Kumamoto → Aso → Beppu → Tenjin</p></div><a href="plan.html" class="plan-button">SEE THE FULL TRIP PLAN ↗</a></section>
 </main>

@@ -31,8 +31,9 @@ Shin Shin ramen อยู่ในรายการอยากไปและ�
 - เป้าหมาย: US Superior Down Jacket #2301377 ไม่มีฮู้ด 800 FP; รุ่นมีฮู้ด #2301375 เป็นตัวเลือก ไซซ์ US ต้องลองกับเสื้อด้านใน ราคา Outlet และสต็อกยังต้องเช็กก่อนเดินทาง
 - [ข้อมูลร้าน Torius](https://store.montbell.jp/search/shopinfo/?shop_no=618858) · [รุ่นไม่มีฮู้ด](https://webshop.montbell.jp/goods/disp.php?product_id=2301377) · [รุ่นมีฮู้ด](https://webshop.montbell.jp/goods/disp.php?product_id=2301375)
 - [เปิด Wishlist / Reminder หน้าแรก](https://iahc-chai.github.io/Fukuoka2026/#new-entry): เพิ่มข้อความ ระบุ Chai หรือ Care หมวดหมู่ วันที่ ติ๊ก Done และลบรายการได้ ส่วน To-do เดิมยังแสดงใน [Trip Plan](https://iahc-chai.github.io/Fukuoka2026/plan.html#wishlist)
-- หน้าแรกยังบันทึก Wishlist / Reminder เฉพาะใน localStorage ของเครื่องนั้น; Wishlist เดิมใช้ข้อมูลเดียวกับหน้า Trip Plan บนเครื่องเดียวกัน แต่ **ยังไม่ซิงก์ข้ามเครื่อง** หรือเขียนกลับ Google Sheets อัตโนมัติ จนกว่าจะเชื่อม Apps Script Web App. การเลือกวันที่ของ Wishlist ยังไม่เพิ่มกิจกรรมลงแผนรายวันอัตโนมัติ
-- ตรวจเลย์เอาต์จำลองขนาด iPhone/iPad ทั้งแนวตั้งและแนวนอน 375–1366px แล้ว รวมการเพิ่มผ่าน Enter, ติ๊กเสร็จ, โหลดซ้ำ, ลบ และเลิกทำ มีพื้นที่แตะ To-do อย่างน้อย 44px และทางสำรองเมื่อ Safari ไม่มี `crypto.randomUUID` ยังไม่ได้ทดสอบบนอุปกรณ์ Apple จริง รายการใน iPhone และ iPad เก็บแยกกัน
+- Shared sync implementation now uses a Google Apps Script HTML-service bridge and confirmed Sheets responses. **Test release:** the owner supplied the Apps Script production deployment and authorized publishing before live verification. Enter the private key in the homepage Google Sheets panel. Live cross-device verification remains pending; local two-session tests pass.
+- Existing local Wishlist entries, Reminder metadata and Trip Plan booking checks are retained. Connect explicitly, then use **Import local notes once** on each phone. Trip Plan To-do and booking checks remain local; use the homepage for shared Wishlist edits.
+- Read [deployment, security and maintenance instructions](google-sheets-sync/SETUP.md). Never put the access key in this public repository or chat.
 
 ## คู่มือ GitHub Workflow แบบกดดูได้
 
