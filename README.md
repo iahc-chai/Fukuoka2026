@@ -4,11 +4,11 @@
 
 ## เปิดเว็บทริป
 
-**[Fukuoka Trip Planner บน GitHub Pages](https://iahc-chai.github.io/Fukuoka2026/)**
+**[Our Wishlist — หน้าแรก](https://iahc-chai.github.io/Fukuoka2026/)** · **[Trip Plan — แผนเที่ยว 7 วัน](https://iahc-chai.github.io/Fukuoka2026/plan.html)**
 
-เว็บหลักเผยแพร่จาก `main / (root)` ใช้ลิงก์นี้บนมือถือได้เลย ไม่ต้องรัน localhost
+เว็บหลักเผยแพร่จาก `main / (root)` ใช้ลิงก์นี้บนมือถือได้เลย ไม่ต้องรัน localhost · เปิดเว็บหลักจะเจอช่อง Wishlist / Reminder สำหรับ Chai และ Care ก่อน ส่วนแผนเที่ยวอยู่หน้า `plan.html`
 
-เลือกวัน 17–23 ธ.ค. แล้วดูแผนที่ Google Maps ในหน้าเว็บ เลือกหมุดเพื่อดูทีละสถานที่ของวันนั้น และใช้ปุ่มเส้นทางอ้างอิงเพื่อเปิดการเดินทางใน Google Maps แผนที่ต้องใช้อินเทอร์เน็ต หากโหลดไม่ได้ยังเปิดลิงก์หมุดภายนอกได้
+ในหน้า Trip Plan เลือกวัน 17–23 ธ.ค. แล้วดูแผนที่ Google Maps ในหน้าเว็บ เลือกหมุดเพื่อดูทีละสถานที่ของวันนั้น และใช้ปุ่มเส้นทางอ้างอิงเพื่อเปิดการเดินทางใน Google Maps แผนที่ต้องใช้อินเทอร์เน็ต หากโหลดไม่ได้ยังเปิดลิงก์หมุดภายนอกได้
 
 Shin Shin ramen อยู่ในรายการอยากไปและแผนมื้อเย็น 22 ธ.ค. ที่ Tenjin Honten หลังกลับจาก Tosu ดู [ข้อมูลสาขาจากร้าน](https://www.hakata-shinshin.com/tenpo_tenjin) และ [หมุด Google Maps](https://www.google.com/maps/search/?api=1&query=ShinShin+Tenjin+Honten+Fukuoka) โดยตรวจวันเปิดและคิวอีกครั้งใกล้เดินทาง
 
@@ -16,13 +16,13 @@ Shin Shin ramen อยู่ในรายการอยากไปและ�
 
 | วัน | แผนและแผนที่ในเว็บ |
 |---|---|
-| 17 ธ.ค. | [สนามบิน / Hakata / mont-bell Torius / Nanzoin ถ้าเหลือเวลา](https://iahc-chai.github.io/Fukuoka2026/?day=17#itinerary) |
-| 18 ธ.ค. | [Kokura / Karato / Outlet / Mojiko](https://iahc-chai.github.io/Fukuoka2026/?day=18#itinerary) |
-| 19 ธ.ค. | [Relax / Fruitelier / Kumamoto](https://iahc-chai.github.io/Fukuoka2026/?day=19#itinerary) |
-| 20 ธ.ค. | [Aso / Akaushi / Beppu](https://iahc-chai.github.io/Fukuoka2026/?day=20#itinerary) |
-| 21 ธ.ค. | [คืนรถ / LaLaport / Momochi / Tenjin](https://iahc-chai.github.io/Fukuoka2026/?day=21#itinerary) |
-| 22 ธ.ค. | [Dazaifu / Tosu / Shin Shin](https://iahc-chai.github.io/Fukuoka2026/?day=22#itinerary) |
-| 23 ธ.ค. | [THE KNOT / สนามบิน](https://iahc-chai.github.io/Fukuoka2026/?day=23#itinerary) |
+| 17 ธ.ค. | [สนามบิน / Hakata / mont-bell Torius / Nanzoin ถ้าเหลือเวลา](https://iahc-chai.github.io/Fukuoka2026/plan.html?day=17#itinerary) |
+| 18 ธ.ค. | [Kokura / Karato / Outlet / Mojiko](https://iahc-chai.github.io/Fukuoka2026/plan.html?day=18#itinerary) |
+| 19 ธ.ค. | [Relax / Fruitelier / Kumamoto](https://iahc-chai.github.io/Fukuoka2026/plan.html?day=19#itinerary) |
+| 20 ธ.ค. | [Aso / Akaushi / Beppu](https://iahc-chai.github.io/Fukuoka2026/plan.html?day=20#itinerary) |
+| 21 ธ.ค. | [คืนรถ / LaLaport / Momochi / Tenjin](https://iahc-chai.github.io/Fukuoka2026/plan.html?day=21#itinerary) |
+| 22 ธ.ค. | [Dazaifu / Tosu / Shin Shin](https://iahc-chai.github.io/Fukuoka2026/plan.html?day=22#itinerary) |
+| 23 ธ.ค. | [THE KNOT / สนามบิน](https://iahc-chai.github.io/Fukuoka2026/plan.html?day=23#itinerary) |
 
 ## Torius และ To-do ที่เติมเองได้
 
@@ -30,8 +30,8 @@ Shin Shin ramen อยู่ในรายการอยากไปและ�
 - ร้านขายทั้งสินค้าปกติและ Factory Outlet ต้องเช็กป้ายราคา สีดำ BK และไซซ์ของตัวจริง ไม่รับรองว่าทุกตัวลดราคา หรือราคาทุกสาขาเท่ากัน
 - เป้าหมาย: US Superior Down Jacket #2301377 ไม่มีฮู้ด 800 FP; รุ่นมีฮู้ด #2301375 เป็นตัวเลือก ไซซ์ US ต้องลองกับเสื้อด้านใน ราคา Outlet และสต็อกยังต้องเช็กก่อนเดินทาง
 - [ข้อมูลร้าน Torius](https://store.montbell.jp/search/shopinfo/?shop_no=618858) · [รุ่นไม่มีฮู้ด](https://webshop.montbell.jp/goods/disp.php?product_id=2301377) · [รุ่นมีฮู้ด](https://webshop.montbell.jp/goods/disp.php?product_id=2301375)
-- [เปิด To-do](https://iahc-chai.github.io/Fukuoka2026/#wishlist): เพิ่มข้อความ ติ๊กเสร็จ และลบรายการได้ มีรายการเริ่มต้นเรื่อง Torius และการลองเสื้อ พิมพ์รวมไปกับแผนได้
-- To-do บันทึกใน localStorage เดิมโดยคงสถานะเก่าไว้ ไม่ซิงก์ข้ามเครื่องหรือเบราว์เซอร์ การเพิ่ม To-do ยังไม่จัดลงวันให้อัตโนมัติ และการรีเซ็ตเช็กลิสต์เดิมไม่ลบ To-do
+- [เปิด Wishlist / Reminder หน้าแรก](https://iahc-chai.github.io/Fukuoka2026/#new-entry): เพิ่มข้อความ ระบุ Chai หรือ Care หมวดหมู่ วันที่ ติ๊ก Done และลบรายการได้ ส่วน To-do เดิมยังแสดงใน [Trip Plan](https://iahc-chai.github.io/Fukuoka2026/plan.html#wishlist)
+- หน้าแรกยังบันทึก Wishlist / Reminder เฉพาะใน localStorage ของเครื่องนั้น; Wishlist เดิมใช้ข้อมูลเดียวกับหน้า Trip Plan บนเครื่องเดียวกัน แต่ **ยังไม่ซิงก์ข้ามเครื่อง** หรือเขียนกลับ Google Sheets อัตโนมัติ จนกว่าจะเชื่อม Apps Script Web App. การเลือกวันที่ของ Wishlist ยังไม่เพิ่มกิจกรรมลงแผนรายวันอัตโนมัติ
 - ตรวจเลย์เอาต์จำลองขนาด iPhone/iPad ทั้งแนวตั้งและแนวนอน 375–1366px แล้ว รวมการเพิ่มผ่าน Enter, ติ๊กเสร็จ, โหลดซ้ำ, ลบ และเลิกทำ มีพื้นที่แตะ To-do อย่างน้อย 44px และทางสำรองเมื่อ Safari ไม่มี `crypto.randomUUID` ยังไม่ได้ทดสอบบนอุปกรณ์ Apple จริง รายการใน iPhone และ iPad เก็บแยกกัน
 
 ## คู่มือ GitHub Workflow แบบกดดูได้
@@ -62,10 +62,12 @@ python3 -m http.server 8000
 
 เปิด http://localhost:8000 ในเครื่องที่รันคำสั่ง หากเป็นคลาวด์ให้ใช้ port forwarding ของเครื่องมือ
 
-- `index.html` — หน้าเว็บ
-- `style.css` — รูปแบบมือถือ/เดสก์ท็อป และการพิมพ์
+- `index.html` + `home.css` + `home.js` — หน้าแรก Wishlist / Reminder (บันทึกเฉพาะเครื่อง)
+- `plan.html` — หน้าแผนเที่ยว 7 วันเดิมที่คงเนื้อหาและแผนที่
+- `style.css` — รูปแบบ Trip Plan สำหรับมือถือ/เดสก์ท็อป และการพิมพ์
 - `trip.js` — แผนรายวัน หมุด ที่พัก และงานค้าง
 - `script.js` — เลือกวัน แผนที่รายวัน/เลือกหมุด กรองสถานที่ เช็กลิสต์ แผน Aso และปุ่มพิมพ์/รีเซ็ต
+- `google-sheets-sync/Code.gs` และ `SETUP.md` — Backend ตัวอย่างสำหรับเชื่อม Google Sheets (ยังไม่ได้ Deploy หรือเชื่อมกับหน้าเว็บ)
 
 ไม่ต้องติดตั้งแพ็กเกจ สถานะบันทึกใน localStorage ของเบราว์เซอร์และ origin เดียวกัน ไม่ซิงก์ข้ามเครื่องหรือข้าม origin (localhost กับ Pages บันทึกแยกกัน) สถานะ v2 แยกจากแผนเก่า ไม่ยกเครื่องหมายติ๊กเก่ามาใช้กับการจองใหม่ การรีเซ็ตล้างเฉพาะสิ่งที่ติ๊กในเว็บ ไม่เปลี่ยนสถานะจองจากสรุปผู้ใช้
 
