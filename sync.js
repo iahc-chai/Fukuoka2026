@@ -28,7 +28,8 @@ class WishlistSync {
     if(!this.source)return Promise.reject(new Error('ยังไม่เชื่อมต่อ Google Sheets'));
     const requestId=WishlistSync.nonce();
     return new Promise((resolve,reject)=>{
-      const timer=setTimeout(()=>{this.pending.delete(requestId);reject(new Error('หมดเวลารอ · อาจบันทึกแล้ว กด Sync หรือลองซ้ำด้วยรายการเดิม'));},20000);
+      const timeoutMessage=payload.action==='list'?'Google ยังไม่ส่งผลอ่านรายการกลับภายใน 60 วินาที (G02) · ขั้นนี้ไม่มีการเพิ่มหรือแก้ไขข้อมูล':'หมดเวลารอการยืนยัน · อาจบันทึกแล้ว กด Sync เพื่อตรวจก่อนลองซ้ำด้วยรายการเดิม';
+      const timer=setTimeout(()=>{this.pending.delete(requestId);reject(new Error(timeoutMessage));},60000);
       this.pending.set(requestId,{resolve,reject,timer});
       this.source.postMessage({channel:'fukuoka-sync',bridgeId:this.bridgeId,requestId,payload:{...payload,key:this.key}},this.origin);
     });

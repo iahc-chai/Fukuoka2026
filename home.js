@@ -148,7 +148,7 @@ async function connect(){
   client?.close();cloud=null;
   client=new WishlistSync(WISHLIST_ENDPOINT,$('#sync-key').value.trim());
   try{
-    await client.connect();notice('กำลังเชื่อมต่อ…','ขั้นที่ 2/2 ตรวจรหัสผ่านและอ่านรายการจาก Sheet');const result=await client.request({action:'list'});cloud=result.items;
+    await client.connect();notice('กำลังเชื่อมต่อ…','ขั้นที่ 2/2 ตรวจรหัสผ่านและอ่านรายการจาก Sheet · รอได้สูงสุด 60 วินาที');const result=await client.request({action:'list'});cloud=result.items;
     sessionSave('fukuoka-key',client.key);
     notice('Google Sheets · ซิงก์แล้ว','ใช้รายการร่วมกัน · รายการในเครื่องยังอยู่ กด Import เมื่อต้องการ');
     $('.sync-settings').open=false;
