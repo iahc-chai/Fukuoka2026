@@ -141,16 +141,15 @@ async function mutate(payload){
   }catch(e){$('#form-message').textContent='ยังยืนยันการบันทึกไม่ได้ · '+e.message;notice('บันทึกยังไม่ยืนยัน','กด Sync เพื่อตรวจรายการก่อนลองใหม่');return false;}
   finally{busy=false;controls();render();updateImport();}
 }
-$('#sync-endpoint').value=sessionRead('fukuoka-endpoint')||WISHLIST_ENDPOINT;
 $('#sync-key').value=sessionRead('fukuoka-key');
 async function connect(){
   if(busy||connecting)return;
   connecting=true;controls();notice('กำลังเชื่อมต่อ…','ยังไม่เปลี่ยนรายการในเครื่อง');
   client?.close();cloud=null;
-  client=new WishlistSync($('#sync-endpoint').value.trim(),$('#sync-key').value);
+  client=new WishlistSync(WISHLIST_ENDPOINT,$('#sync-key').value.trim());
   try{
     await client.connect();const result=await client.request({action:'list'});cloud=result.items;
-    sessionSave('fukuoka-endpoint',client.endpoint);sessionSave('fukuoka-key',client.key);
+    sessionSave('fukuoka-key',client.key);
     notice('Google Sheets · ซิงก์แล้ว','ใช้รายการร่วมกัน · รายการในเครื่องยังอยู่ กด Import เมื่อต้องการ');
     $('.sync-settings').open=false;
   }catch(e){client.close();client=null;notice('เชื่อมต่อไม่สำเร็จ',e.message+' · กำลังแสดงรายการเฉพาะเครื่อง');}
@@ -183,4 +182,4 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()}
 setInterval(()=>{if(!document.hidden)refresh()},20000);
 if(draft?.data){$('#entry-text').value=draft.data.text;$('#entry-author').value=draft.data.author;$('#entry-category').value=draft.data.category;$('#entry-day').value=draft.data.day;document.querySelector('[name="type"][value="'+draft.data.type+'"]').checked=true;}
 controls();render();
-if($('#sync-endpoint').value&&$('#sync-key').value)connect();
+if($('#sync-key').value)connect();

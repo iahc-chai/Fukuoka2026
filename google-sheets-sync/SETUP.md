@@ -51,8 +51,7 @@ while the page is visible, plus refresh, tab activation and network reconnection
 
 ## Using two iPhones
 
-Open the homepage, expand **Google Sheets**, and enter the same `/exec` URL and key
-on each phone. Share the key privately. Credentials stay in tab-scoped sessionStorage
+Open the homepage, expand **Google Sheets**, and enter the same private key on each phone. The deployment URL is fixed in `sync.js`; travelers do not enter or change it. Share the key privately. Credentials stay in tab-scoped sessionStorage
 so refresh works; closing the browser session may require entry again. Safari and
 LINE use separate storage. The key is never in exported list data. Disconnect clears
 the active key. Use only non-sensitive travel notes: anyone with this shared key can
