@@ -80,14 +80,15 @@ python3 -m http.server 8000
 - Umi Jigoku: รอจัดเวลา ไม่ใช่ Aso Monzenmachi และอาจต้องเลือกระหว่างบ่อกับออนเซ็น
 - Yufuin: เก็บไว้รอบหน้าด้วยรถไฟ ไม่ใส่ปราสาท Kumamoto หรือ Kagoshima ในแผนนี้
 - eSIM มีแล้ว / ยื่นขอ IDP แล้ว / กรอก Guest Information Beppu แล้ว ตามผู้ใช้แจ้ง รอยืนยันการรับเล่ม IDP
-- อัปเดต 12 พ.ย. 2026: ผู้ใช้แจ้งว่าจองโรงแรมคืน 19–20 ธ.ค. แล้ว ยังไม่ได้รับชื่อโรงแรม พิกัด และรายละเอียดที่จอดรถ จึงไม่ถือว่าหมุด Sakuramachi เป็นพิกัดโรงแรมจริง
+- อัปเดต 12 พ.ย. 2026 จากเอกสาร Trip.com: คืน 19–20 ธ.ค. จอง Ark Hotel Kumamotojomae, 5-16 Jotomachi, Chuo Ward, Kumamoto 860-0846; compact double ปลอดบุหรี่ ไม่รวมอาหารเช้า; เช็กอินหลัง 15:00 / เช็กเอาต์ก่อน 10:00; จ่ายแล้ว ฿2,367.71 และมีค่าใช้จ่ายที่โรงแรม ¥400 (เอกสารเทียบ ≈฿84.51). เอกสารแสดง 1 ห้อง/1 คน แต่มีชื่อผู้เข้าพัก 2 คน ต้องยืนยันจำนวนผู้เข้าพักและที่จอดรถก่อนวันเดินทาง. ไม่จัดเก็บเลขจอง, PIN, รายละเอียดผู้เข้าพัก หรือข้อมูลการชำระเงินส่วนตัวใน public repo.
+- ภาพใบเสร็จ Agoda ฿2,691.49 เป็นรายการแยกที่ยังไม่เชื่อมโยงกับโรงแรมคืน 19–20 ธ.ค. จึงยังไม่รวมยอดนี้ในต้นทุนโรงแรม Kumamoto
 
 ## ที่พัก
 
 | คืน | ที่พัก / ย่าน | สถานะตามสรุป |
 |---|---|---|
 | 17–19 ธ.ค. · 2 คืน | EN HOTEL Hakata | รอตรวจชื่อ · มีข้อมูลวันเข้าพักตามสรุป แต่ชื่อ EN HOTEL Hakata ต้องเทียบอีเมลอีกครั้ง |
-| 19–20 ธ.ค. · 1 คืน | โรงแรม Kumamoto (รอชื่อจริง) · หมุด Sakuramachi / Karashimacho เป็นย่านเดิม | จองแล้วตามผู้ใช้แจ้ง 12 พ.ย. 2026 · รอตรวจชื่อ ที่ตั้ง เวลาเช็กอิน และที่จอดรถจากหลักฐาน; ลิงก์ย่านไม่ใช่โรงแรมจริง |
+| 19–20 ธ.ค. · 1 คืน | Ark Hotel Kumamotojomae · 5-16 Jotomachi, Kumamoto | Trip.com ยืนยันการจอง/ชำระล่วงหน้า ฿2,367.71 · จ่ายเพิ่มที่พัก ¥400 · compact double ไม่สูบบุหรี่ · เช็กอินหลัง 15:00 / เช็กเอาต์ก่อน 10:00 · รอยืนยันว่าจองสำหรับ 2 คนและมีที่จอดรถ |
 | 20–21 ธ.ค. · 1 คืน | Prime Room Beppu Root | ตามสรุปมีจอง · Prime Room Beppu Root · Standard House ที่จอดรถฟรีและกรอกข้อมูลผู้เข้าพักแล้วตามผู้ใช้แจ้ง ยังไม่ได้ตรวจ voucher ใน session นี้ |
 | 21–23 ธ.ค. · 2 คืน | THE KNOT FUKUOKA Tenjin | ตามสรุปชำระแล้ว · Superior Small Double · ต้องการห้องไม่สูบบุหรี่ คำขอส่งสำเร็จ/โรงแรมตอบรับหรือยัง ต้องตรวจ Gmail |
 
@@ -111,7 +112,7 @@ python3 -m http.server 8000
 | ช้อปปิ้ง | THE OUTLETS KITAKYUSHU | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=THE%20OUTLETS%20KITAKYUSHU) |
 | สถานที่ | Mojiko Retro | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Mojiko%20Retro%20Kitakyushu) |
 | อาหาร | Fruitelier Nakamura Orchard | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Fruitelier%20Nakamura%20Orchard%20Kurume) |
-| สถานที่ | Sakuramachi / Karashimacho | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Sakuramachi%20Kumamoto) |
+| ที่พัก | Ark Hotel Kumamotojomae | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Ark%20Hotel%20Kumamotojomae%205-16%20Jotomachi%20Kumamoto) |
 | อาหาร | Shimotori Shopping Arcade | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Shimotori%20Shopping%20Arcade%20Kumamoto) |
 | ธรรมชาติ | Kusasenri | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Kusasenri%20Aso%20Kumamoto) |
 | ธรรมชาติ | Kishimadake | [เปิดแผนที่](https://www.google.com/maps/search/?api=1&query=Kishimadake%20Aso%20Kumamoto) |
