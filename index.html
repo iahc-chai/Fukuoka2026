@@ -1,74 +1,72 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#16181A">
-  <meta name="description" content="Fukuoka และ Kyushu 17 ถึง 23 ธันวาคม 2026 แผนรายวัน แผนที่ ร้านอาหาร ที่พัก และเช็กลิสต์ของเรา">
-  <title>Fukuoka 2026 · Our next route</title>
-  <link rel="stylesheet" href="style.css?v=20261107-torius">
-  <script src="trip.js?v=20261107-torius" defer></script>
-  <script src="script.js?v=20261107-torius" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101a1b">
+<meta name="description" content="Our Wishlist — สิ่งที่ Chai และ Care อยากกิน อยากไป และต้องไม่ลืมในทริป Fukuoka 2026">
+<title>Our Wishlist ♡ · Fukuoka 2026</title>
+<link rel="stylesheet" href="home.css?v=20261112">
+<script>
+(function () {
+  const p=new URLSearchParams(location.search);
+  const legacy=['#itinerary','#route','#places','#stays','#budget','#checklist','#print-plan'];
+  if (p.has('day') || legacy.includes(location.hash)) {
+    location.replace('plan.html'+location.search+location.hash);
+  }
+})();
+</script>
+<script src="home.js?v=20261112" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#itinerary">ข้ามไปแผนเที่ยว</a>
-  <header class="topbar"><div class="topbar-inner">
-    <a class="brand" href="#">FUKUOKA<span> / 2026</span></a>
-    <nav aria-label="เมนูหลัก"><a href="#itinerary">แผนเที่ยว</a><a href="#places">ของกินและหมุด</a><a href="#stays">ที่พัก</a><a href="#wishlist">To-do</a><a href="#checklist">เช็กลิสต์</a></nav>
-    <a class="button button-accent nav-action" href="#itinerary">เปิดแผน <span class="arrow-circle" aria-hidden="true">↗</span></a>
-  </div></header>
-  <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy"><p class="eyebrow">OUR WINTER JOURNAL / KYUSHU, JAPAN</p><h1 id="hero-title">FUKUOKA.<br>OUR NEXT<br><span>ROUTE.</span></h1><p class="hero-thai">เจ็ดวันในคิวชู เที่ยวในจังหวะของเรา</p><p class="hero-desc">เริ่มจากราเมนในเมือง ขับออกไปหากาแฟและภูเขา<br>พักออนเซ็นที่ Beppu แล้วกลับมาส่งท้ายที่ Tenjin</p><div class="hero-meta"><span>17 ถึง 23 ธ.ค. 2026</span><span>ผู้ใหญ่ 2 คน</span><span>6 คืน</span></div><div class="hero-actions"><a class="button button-accent" href="#itinerary">ดูแผนรายวัน <span aria-hidden="true">↗</span></a><a class="text-link" href="#route">ดูเส้นทางของเรา <span aria-hidden="true">↓</span></a><a class="text-link" href="github-workflow/">เรียนรู้ GitHub Workflow ↗</a></div></div>
-      <figure class="hero-portrait"><div class="hero-image-wrap"><img src="assets/kyushu-winter.png" alt="ภาพประกอบถนนเงียบผ่านทุ่งหญ้าฤดูหนาวกับแนวภูเขาในคิวชู" width="1122" height="1402" fetchpriority="high"></div><figcaption><span>01 / KYUSHU IN WINTER</span><span>ภาพบรรยากาศจำลอง</span></figcaption></figure>
-    </section>
-    <section id="route" class="route-section" aria-labelledby="route-title">
-      <div class="route-heading"><div><p class="eyebrow">THE ROUTE / OUT OF THE CITY</p><h2 id="route-title">จาก Hakata ออกไป<br>แล้วกลับมาที่ Tenjin</h2></div><div class="route-count"><strong id="route-counter">07</strong><span>วันในคิวชู<br>17 ถึง 23 ธันวาคม</span></div></div>
-      <svg class="route-drawing" viewBox="0 0 1100 170" role="img" aria-labelledby="route-svg-title"><title id="route-svg-title">แผนภาพเส้นทาง Hakata ผ่าน Kurume Kumamoto Aso Beppu และกลับ Tenjin ไม่ใช่แผนที่สำหรับนำทาง</title><g class="road-network" fill="none"><path d="M0 120H1100M0 55H1100M120 0V170M400 0V170M730 0V170M990 0V170"/><path d="M0 170 280 0M330 170 610 0M700 170 980 0"/></g><path class="route-base" d="M50 120C130 120 180 55 250 55S360 110 440 110S535 35 610 35S745 95 810 95S970 45 1050 45"/><path class="route-trace" pathLength="1" d="M50 120C130 120 180 55 250 55S360 110 440 110S535 35 610 35S745 95 810 95S970 45 1050 45"/><g class="route-markers"><rect x="44" y="114" width="12" height="12"/><rect class="intermediate-marker" x="244" y="49" width="12" height="12"/><rect class="intermediate-marker" x="434" y="104" width="12" height="12"/><rect class="intermediate-marker" x="604" y="29" width="12" height="12"/><rect class="intermediate-marker" x="804" y="89" width="12" height="12"/><rect x="1044" y="39" width="12" height="12"/></g></svg>
-      <ol class="route-stops"><li><span>01</span> Hakata</li><li><span>02</span> Kurume</li><li><span>03</span> Kumamoto</li><li><span>04</span> Aso</li><li><span>05</span> Beppu</li><li><span>06</span> Tenjin</li></ol>
-      <p class="route-caption">รถเช่า Relax 19 ธ.ค. 12:00 ถึง 21 ธ.ค. 12:00 · เส้นนี้แสดงลำดับเมือง ใช้ Google Maps รายวันสำหรับนำทางจริง</p>
-    </section>
-    <div class="source-banner"><strong>แผนทริปของเรา / สถานะล่าสุด</strong><p>สถานะการจองอ้างอิงข้อมูลที่คุณแจ้ง · Ark Hotel Kumamotojomae 19–20 ธ.ค. ยืนยันจาก Trip.com (รอตรวจ 2 คน/ที่จอดรถ) · ตั๋วและ voucher บางส่วนยังรอตรวจ · Yufuin เก็บไว้รอบหน้า · Takachiho ยังรอตัดสินใจ</p><div class="toolbar"><button id="print-trip" class="button" type="button">พิมพ์แผนทั้งทริป</button><button id="reset-checklist" class="text-button" type="button">รีเซ็ตเช็กลิสต์ในเครื่อง</button></div></div>
-    <section id="itinerary" class="section" aria-labelledby="itinerary-title">
-      <div class="section-heading"><div><p class="eyebrow">001 / THE DAILY PLAN</p><h2 id="itinerary-title">หนึ่งวัน หนึ่งเส้นทาง</h2></div><p>เลือกวัน ดูหมุด แล้วค่อยออกเดินทาง</p></div>
-      <div id="day-picker" class="day-picker" role="group" aria-label="เลือกวันเที่ยว"></div>
-      <section class="daily-map" aria-labelledby="map-title">
-        <div class="map-heading"><div><p class="eyebrow">YOUR PLACES / ON THE MAP</p><h3 id="map-title">แผนที่ประจำวัน</h3><p id="map-day-label"></p></div><a id="map-open-place" class="button" target="_blank" rel="noopener noreferrer">เปิดหมุดใน Google Maps ↗</a></div>
-        <div id="map-pin-picker" class="map-pin-picker" role="group" aria-label="เลือกหมุดบนแผนที่ของวันนี้"></div>
-        <p id="map-selection" class="map-selection" aria-live="polite"></p>
-        <iframe id="day-map-frame" class="day-map-frame" title="แผนที่ Google Maps ของสถานที่ที่เลือก" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <div id="map-direct-only" class="map-direct-only" hidden><strong>หมุดรับและคืน Relax ที่คุณยืนยัน</strong><p>เปิดลิงก์ต้นฉบับเพื่อดูตำแหน่งและกดนำทางใน Google Maps</p></div>
-        <p class="map-help">เลือกหมุดเพื่อดูทีละสถานที่ของวันนั้น ดูการเดินทางจากปุ่มเส้นทางอ้างอิงด้านล่าง หากแผนที่ไม่แสดง ให้กดเปิดหมุดใน Google Maps</p>
-      </section>
-      <div class="planner-grid"><div class="day-panel">
-        <div class="day-heading"><div><span id="day-kicker" class="eyebrow"></span><h3 id="day-title"></h3><p id="day-description"></p></div><a id="day-route" class="button" target="_blank" rel="noopener noreferrer">เปิดเส้นทาง ↗</a></div>
-        <div id="day-routes" class="day-routes"></div><p id="route-note" class="route-note"></p>
-        <div id="aso-controls" class="aso-controls" hidden><span>แผนวันที่ 20 / ปรับตามอากาศ</span><div class="segmented" role="group" aria-label="เลือกแผนวันที่ 20"><button data-plan="aso" type="button">แผน A / Aso</button><button data-plan="backup" type="button">แผนสำรอง / งดเดินเขา</button></div><p id="plan-note"></p><a href="https://www.google.com/maps/search/?api=1&amp;query=Takachiho+Gorge+Miyazaki" target="_blank" rel="noopener noreferrer">Takachiho ยังรอตัดสินใจ ↗</a></div>
-        <p class="schedule-note">ช่วงเวลาเป็นแนวทาง ตรวจรอบเดินทางและเวลาเปิดอีกครั้ง</p>
-        <div id="timeline" class="timeline"></div><p id="day-progress" class="day-progress" aria-live="polite"></p>
-      </div><aside class="sidebar">
-        <div class="note-card"><span class="eyebrow">A NOTE TO OURSELVES</span><h3>เผื่อเวลาไว้<br>ให้การเดินช้า ๆ</h3><p>เที่ยวไม่ครบก็ได้ แต่ขอให้มีเวลาสำหรับกาแฟ ร้านที่บังเอิญเจอ และการพักจริง ๆ</p></div>
-        <div class="essentials"><h3>พกไว้ อุ่นใจกว่า</h3><p>เสื้อกันลม รองเท้ากันน้ำ ร่มพับ</p><p>บัตร IC สำหรับรถในเมือง<br>เงินสดสำหรับร้านเล็กและยาตาอิ</p><a class="text-link" href="#checklist">เช็กก่อนออกเดินทาง ↓</a></div>
-        <div class="storage-status"><span class="status-dot" aria-hidden="true"></span><span id="storage-status" role="status">เช็กลิสต์บันทึกเฉพาะในเบราว์เซอร์นี้</span></div>
-      </aside></div>
-    </section>
-    <section id="places" class="section places-section" aria-labelledby="places-title"><div class="section-heading"><div><p class="eyebrow">002 / FOOD AND GOOD STOPS</p><h2 id="places-title">ของกินและหมุดที่เก็บไว้</h2></div><p>Shin Shin ราเมน เนื้ออากะ กาแฟ และที่อยากแวะ</p></div><div id="place-filters" class="filters" role="group" aria-label="ประเภทสถานที่"></div><div id="place-list" class="place-grid"></div><p class="section-footnote">หมุดส่วนใหญ่ใช้คำค้นชื่อ ให้ตรวจตำแหน่งก่อนนำทาง ส่วน Relax ใช้ลิงก์รับและคืนที่คุณส่งมาโดยตรง</p></section>
-    <section id="stays" class="section stays-section" aria-labelledby="stays-title"><div class="section-heading"><div><p class="eyebrow">003 / WHERE WE STAY</p><h2 id="stays-title">พักให้พอ แล้วค่อยไปต่อ</h2></div><p>6 คืน / 4 จุดพัก / ผู้ใหญ่ 2 คน</p></div><div id="stay-list" class="stay-grid"></div></section>
-    <section id="budget" class="section budget-section" aria-labelledby="budget-title"><div><p class="eyebrow">004 / THE PRACTICAL PART</p><h2 id="budget-title">รู้ค่าใช้จ่าย<br>ก่อนออกเดินทาง</h2><p>แผนนี้ใช้รถเช่าและพัก 4 จุด ยอดรวมยังรอตรวจจากตั๋ว voucher และการจองจริง</p><p>ค่าฟาร์มในโบรชัวร์ ¥2,400 / 50 นาที ต้องยืนยันราคาต่อคนและรอบจริงก่อนรวมงบ</p><small>ราคาของ Relax ต้องตรวจแยกจากเงื่อนไข HM</small></div><div class="budget-breakdown"><div><span>THE KNOT / 2 คืน</span><strong>ตามสรุปชำระแล้ว</strong></div><div><span>Hakata / Beppu</span><strong>รอตรวจยอดจากหลักฐาน</strong></div><div><span>Ark Hotel Kumamotojomae / 1 คืน</span><strong>฿2,367.71 จ่ายแล้ว + ¥400 ที่โรงแรม · รอเช็ก 2 คน/ที่จอดรถ</strong></div><div><span>Relax / ประกัน / ยาง / ETC / น้ำมัน</span><strong>รอตรวจ voucher และค่าเพิ่ม</strong></div><div><span>Shinkansen / ผู้ใหญ่ 2 คน ไปกลับ</span><strong>ยังไม่ซื้อ</strong></div></div></section>
-    <section id="checklist" class="section" aria-labelledby="checklist-title"><div class="section-heading"><div><p class="eyebrow">005 / BEFORE WE GO</p><h2 id="checklist-title">เตรียมให้พร้อม แล้วไปกัน</h2></div><span id="booking-progress" class="count-badge" aria-live="polite"></span></div><div class="done-facts"><strong>ทำแล้วตามที่คุณแจ้ง</strong><p>จอง Ark Hotel Kumamotojomae คืน 19–20 ธ.ค. และจ่ายค่าห้องแล้ว · มี eSIM แล้ว · ยื่นขอใบขับขี่สากลแล้ว แต่รอเช็กการรับเล่ม · กรอก Guest Information ของ Beppu แล้ว</p></div><div class="progress-track"><div id="booking-bar"></div></div><div id="booking-list" class="booking-grid"></div><p class="privacy-note">ในเว็บเก็บเฉพาะแผนและสถานะ ส่วนเลขจอง PIN พาสปอร์ต และ QR ตั๋ว เก็บไว้ในพื้นที่ส่วนตัว</p></section>
-    <section id="wishlist" class="section" aria-labelledby="wishlist-title">
-      <div class="section-heading"><div><p class="eyebrow">OUR TO-DO / MAKE IT OURS</p><h2 id="wishlist-title">สิ่งที่อยากทำในทริปนี้</h2></div><span id="wish-progress" class="count-badge" aria-live="polite"></span></div>
-      <p>เติมร้าน ของที่อยากซื้อ หรือสิ่งที่อยากทำได้เรื่อย ๆ รายการนี้ยังไม่จัดลงวันเที่ยวให้อัตโนมัติ</p>
-      <form id="wish-form" class="wish-form"><label for="wish-input">เพิ่มสิ่งที่อยากทำ</label><div class="wish-entry"><input id="wish-input" name="wish" type="text" maxlength="300" required enterkeyhint="done" placeholder="เช่น ลองเสื้อดาวน์สีดำ / หาร้านกาแฟ"><button class="button button-accent" type="submit">เพิ่มรายการ +</button></div></form>
-      <ul id="wish-list" class="wish-list" aria-label="To-do ของฉัน"></ul>
-      <p id="wish-message" role="status" aria-live="polite"></p>
-      <p id="wish-storage-note" class="section-footnote">รายการบันทึกเฉพาะเบราว์เซอร์และเครื่องนี้ เปิดเครื่องอื่นจะเป็นคนละรายการ</p>
-    </section>
-    <section class="ramen-callout" aria-labelledby="ramen-title"><div><p class="eyebrow">SAVED FOR 22 DECEMBER / TENJIN</p><h2 id="ramen-title">ปิดวันด้วย<br>SHIN SHIN.</h2><p>กลับจาก Tosu แล้วไปหาราเมนชามนี้ด้วยกัน<br>Tenjin Honten ยังต้องตรวจวันเปิดและคิวใกล้เดินทาง</p></div><a class="button button-paper" href="https://www.google.com/maps/search/?api=1&amp;query=ShinShin+Tenjin+Honten+Fukuoka" target="_blank" rel="noopener noreferrer">เปิดหมุดร้าน <span aria-hidden="true">↗</span></a></section>
-    <section id="print-plan" aria-label="แผนทั้งทริปสำหรับพิมพ์"></section>
-    <footer><div class="footer-wordmark" aria-hidden="true">FUKUOKA</div><div class="footer-details"><div><a class="brand" href="#">FUKUOKA / 2026</a><p>17 ถึง 23 ธันวาคม / ผู้ใหญ่ 2 คน<br>ข้อมูลการเดินทางที่ยังไม่ยืนยันแสดงไว้ในแผน</p></div><nav aria-label="ลิงก์ท้ายหน้า"><a href="#itinerary">แผนรายวัน</a><a href="#budget">งบประมาณ</a><a href="github-workflow/">GitHub Workflow</a><a href="https://github.com/iahc-chai/Fukuoka2026" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav><p class="footer-note">OUR NEXT ROUTE.<br>MAKE ROOM FOR THE LITTLE THINGS.</p></div></footer>
-  </main>
-  <a id="mobile-day-link" class="mobile-plan-bar" href="#itinerary">เปิดแผนรายวัน <span aria-hidden="true">↗</span></a>
-  <noscript><p class="noscript">กรุณาเปิด JavaScript เพื่อเลือกวัน ดูแผนที่ และใช้เช็กลิสต์</p></noscript>
+<a class="skip" href="#new-entry">ข้ามไปเพิ่มรายการ</a>
+<header class="nav-shell"><div class="nav-inner">
+<a class="wordmark" href="index.html">FUKUOKA <span>/ 2026</span></a>
+<nav aria-label="เมนู"><a class="nav-current" href="index.html" aria-current="page">♡ Wishlist</a><a href="plan.html">Trip Plan ↗</a><a href="plan.html#checklist">Bookings</a></nav>
+</div></header>
+<main class="main-shell">
+<section class="intro">
+ <div class="intro-copy"><p class="eyebrow">CHAI × CARE / JAPAN WINTER TRIP</p><h1>OUR JAPAN<br><em>WISHLIST<span>♡</span></em></h1><p class="intro-thai">อยากกิน อยากไป หรือกลัวลืมอะไร เติมไว้ตรงนี้ได้เลย</p><p class="intro-meta">17 — 23 DEC 2026 <span class="dot">·</span> 7 DAYS <span class="dot">·</span> KYUSHU, JAPAN</p></div>
+ <div class="intro-art"><div class="art-image" role="img" aria-label="ภาพบรรยากาศฤดูหนาวในคิวชู"></div><p>OUR WINTER JOURNAL <span>01 / 02</span></p></div>
+</section>
+<section class="workspace" aria-label="Our wishlist and reminders">
+ <div class="workspace-top"><div><p class="eyebrow">THE LITTLE THINGS THAT MATTER</p><h2>Things we don't want to miss.</h2></div><a class="route-link" href="plan.html">OPEN THE 7-DAY TRIP PLAN <span aria-hidden="true">↗</span></a></div>
+ <div class="workspace-grid">
+  <section class="editor-card" id="new-entry" aria-labelledby="editor-title">
+   <div class="card-heading"><span class="card-index">01 / ADD A NOTE</span><span aria-hidden="true">✳</span></div>
+   <h3 id="editor-title">Write it down.</h3><p class="help">แคร์อยากกินอะไร หรือมีอะไรต้องทำระหว่างทริป เพิ่มได้เลย</p>
+   <form id="entry-form">
+    <fieldset class="entry-types"><legend>ประเภทของรายการ</legend>
+      <label><input type="radio" name="type" value="wish" checked><span>♡ Wishlist</span><small>อยากกิน / ซื้อ / ไป</small></label>
+      <label><input type="radio" name="type" value="reminder"><span>♧ Reminder</span><small>ต้องทำ / ห้ามลืม</small></label>
+    </fieldset>
+    <label class="field-label" for="entry-text">อยากเพิ่มอะไร?</label>
+    <textarea id="entry-text" maxlength="300" rows="2" placeholder="เช่น กินน้ำปั่น 7-Eleven หรือซื้อขนม Lawson" required></textarea>
+    <div class="suggestions"><span>ไอเดีย:</span><button type="button" data-example="ลองน้ำปั่น 7-Eleven">7-Eleven 🥤</button><button type="button" data-example="หาขนมอร่อยที่ Lawson">Lawson 🍡</button></div>
+    <div class="fields-two">
+      <div><label class="field-label" for="entry-author">ใครเพิ่ม?</label><select id="entry-author"><option value="Care">Care ♡</option><option value="Chai">Chai ✳</option></select></div>
+      <div><label class="field-label" for="entry-category">หมวดหมู่</label><select id="entry-category"><option value="food">🍡 Food</option><option value="shop">🛍 Shopping</option><option value="places">📍 Places</option><option value="other">✳ Other</option></select></div>
+    </div>
+    <label class="field-label" for="entry-day">วันไหน?</label>
+    <select id="entry-day"><option value="any">วันไหนก็ได้ (Any day)</option><option value="17">17 Dec · Thu</option><option value="18">18 Dec · Fri</option><option value="19">19 Dec · Sat</option><option value="20">20 Dec · Sun</option><option value="21">21 Dec · Mon</option><option value="22">22 Dec · Tue</option><option value="23">23 Dec · Wed</option></select>
+    <button class="add-button" type="submit">+ ADD TO OUR LIST <span>↗</span></button>
+   </form>
+   <p id="form-message" role="status" aria-live="polite"></p>
+  </section>
+  <section class="list-card" aria-labelledby="list-title">
+    <div class="card-heading"><span class="card-index">02 / OUR SHARED IDEAS</span><span aria-hidden="true">♡</span></div>
+    <div class="list-heading"><div><h3 id="list-title">Our little list.</h3><p class="help">ติ๊ก Done เมื่อทำสำเร็จแล้ว</p></div><span id="progress" class="progress-count">0 / 0</span></div>
+    <div class="progress-line"><span id="progress-fill"></span></div>
+    <div class="tabs" role="group" aria-label="Filter list"><button type="button" class="active" data-filter="all" aria-pressed="true">All <span id="all-count">0</span></button><button type="button" data-filter="wish" aria-pressed="false">♡ Wishlist</button><button type="button" data-filter="reminder" aria-pressed="false">♧ Reminders</button></div>
+    <ul id="entries" class="entries" aria-live="polite"></ul>
+    <p id="empty-state" class="empty-state" hidden>ยังไม่มีรายการในหมวดนี้ มาเพิ่มสิ่งที่อยากทำด้วยกัน ♡</p>
+    <div class="list-bottom"><button type="button" id="export-button">↓ EXPORT MY LIST</button><span id="entry-count">0 ITEMS</span></div>
+  </section>
+ </div>
+ <div class="sync-note" role="status"><span class="sync-dot"></span><p><strong id="sync-title">บันทึกบนเครื่องนี้</strong><span id="sync-description">ตอนนี้รายการยังไม่ซิงก์ข้ามมือถือ Google Sheet สำหรับรายการกลางสร้างแล้ว แต่ต้องตั้งค่า Google Apps Script ก่อน</span></p></div>
+</section>
+<section class="plan-teaser"><div><p class="eyebrow">THE REST OF THE JOURNEY</p><h2>Seven days. One route.</h2><p>Hakata → Kurume → Kumamoto → Aso → Beppu → Tenjin</p></div><a href="plan.html" class="plan-button">SEE THE FULL TRIP PLAN ↗</a></section>
+</main>
+<footer><span>CHAI × CARE / FUKUOKA 2026</span><span>MADE FOR THE LITTLE MOMENTS ♡</span></footer>
 </body>
 </html>
