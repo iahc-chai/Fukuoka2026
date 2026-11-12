@@ -17,7 +17,7 @@ const POIS = {
   kitakyushu: ['THE OUTLETS KITAKYUSHU', 'THE OUTLETS KITAKYUSHU', 'ช้อปปิ้ง'],
   mojiko: ['Mojiko Retro', 'Mojiko Retro Kitakyushu', 'สถานที่'],
   orchard: ['Fruitelier Nakamura Orchard', 'Fruitelier Nakamura Orchard Kurume', 'อาหาร'],
-  kumamoto: ['Sakuramachi / Karashimacho', 'Sakuramachi Kumamoto', 'สถานที่'],
+  kumamoto: ['Ark Hotel Kumamotojomae', 'Ark Hotel Kumamotojomae, 5-16 Jotomachi, Chuo Ward, Kumamoto 860-0846, Japan', 'ที่พัก'],
   shimotori: ['Shimotori Shopping Arcade', 'Shimotori Shopping Arcade Kumamoto', 'อาหาร'],
   kusa: ['Kusasenri', 'Kusasenri Aso Kumamoto', 'ธรรมชาติ'],
   kishi: ['Kishimadake', 'Kishimadake Aso Kumamoto', 'ธรรมชาติ'],
@@ -54,10 +54,10 @@ const DAYS = [
     activity('mojiko', 'แสงเย็น', 'Mojiko Retro', 'เผื่อเวลาเดินทางย้อนขึ้นไป Mojiko หากช้าให้ลดเวลาช้อป ไม่ลดเวลารถไฟกลับ', 'JR → Mojiko → เดิน', 'mojiko'),
     activity('return-hakata', 'ก่อน 20:00', 'กลับถึง Hakata', 'ต้องเลือกรอบจริงที่ถึงก่อน 20:00 พร้อมเผื่อเปลี่ยนขบวน ยังไม่ยืนยันเวลา ไม่มีการซื้อสำเร็จจาก WAUG', 'Mojiko → JR Kokura → Shinkansen Hakata', 'hakata', 'รอตรวจ')
   ] },
-  { date: 19, weekday: 'เสาร์', tag: 'Kurume', title: 'รับรถ · สตรอว์เบอร์รี · Kumamoto', description: 'นอน Kumamoto · แจ้งว่าจองโรงแรมคืน 19–20 ธ.ค. แล้ว รอชื่อและพิกัดจริง', mode: 'driving', origin: 'hakata', destination: 'kumamoto', waypoints: ['orchard'], routeLabel: 'Hakata → ฟาร์ม → Kumamoto', routeNote: 'เส้นทางรวมนี้เริ่ม Hakata เพื่อดูภาพรวม เปิดหมุด Relax ที่ผู้ใช้ยืนยันแยกด้านล่างสำหรับจุดรับรถจริง', stops: [
+  { date: 19, weekday: 'เสาร์', tag: 'Kurume', title: 'รับรถ · สตรอว์เบอร์รี · Kumamoto', description: 'นอน Ark Hotel Kumamotojomae · Trip.com ชำระแล้ว · เช็กอินหลัง 15:00', mode: 'driving', origin: 'hakata', destination: 'kumamoto', waypoints: ['orchard'], routeLabel: 'Hakata → ฟาร์ม → Kumamoto', routeNote: 'เส้นทางรวมนี้เริ่ม Hakata เพื่อดูภาพรวม เปิดหมุด Relax ที่ผู้ใช้ยืนยันแยกด้านล่างสำหรับจุดรับรถจริง', stops: [
     activity('relax-pickup', '12:00', 'เช็กเอาต์ & รับรถ Relax', 'ช่วงเช่า 19 ธ.ค. 12:00 → 21 ธ.ค. 12:00 รอตรวจ voucher รถ รุ่น ประกัน ETC ยางฤดูหนาว และค่าจ่ายเพิ่ม ห้ามนำเงื่อนไข HM มาปน', 'เปิดหมุด Relax ที่ผู้ใช้ยืนยัน', 'relax', 'รอตรวจ voucher'),
     activity('strawberry', 'เป้า 14:00', 'Fruitelier Nakamura Orchard', 'ยังไม่จองรอบ โบรชัวร์ระบุเริ่มฤดู 19 ธ.ค. 2026 ราคา ¥2,400 / 50 นาที รอตรวจรอบว่าง ราคา และเงื่อนไขจริงสำหรับ 2 คน', 'ขับรถไป Kurume เผื่อเวลารับรถ', 'orchard', 'ยังไม่จอง'),
-    activity('kumamoto-hotel', 'เย็น', 'เช็กอิน Kumamoto', 'ผู้ใช้แจ้งว่าจองที่พักคืน 19–20 ธ.ค. 2026 แล้ว รอชื่อโรงแรม พิกัดจริง เวลาเช็กอิน และรายละเอียดที่จอดรถจากการยืนยันจอง หมุด Sakuramachi / Karashimacho เป็นเพียงย่านเดิมที่เล็งไว้', 'Kurume → Kumamoto · ตรวจเส้นทางไปโรงแรมจริง', 'kumamoto', 'จองแล้วตามแจ้ง · รอตรวจรายละเอียด'),
+    activity('kumamoto-hotel', 'หลัง 15:00', 'เช็กอิน Ark Hotel Kumamotojomae', 'ยืนยันจากเอกสาร Trip.com: 19–20 ธ.ค. 2026 · 1 ห้อง 1 คืน · compact double ปลอดบุหรี่ ไม่รวมอาหารเช้า · ชำระล่วงหน้า ฿2,367.71 และจ่ายโรงแรมเพิ่ม ¥400 (เอกสารประมาณ ฿84.51) · เช็กเอาต์ก่อน 10:00 วันที่ 20; จำนวนผู้เข้าพักในเอกสารแสดง 1 คน แม้มีชื่อผู้เข้าพัก 2 คน ต้องยืนยันว่าเข้าพักได้ 2 คน และตรวจที่จอดรถก่อนถึง', 'Fruitelier → Ark Hotel Kumamotojomae · 5-16 Jotomachi', 'kumamoto', 'ยืนยันการจอง · รอเช็กจำนวนคนและที่จอดรถ'),
     activity('shimotori', 'ค่ำ', 'เดิน Sakuramachi / Shimotori', 'หามื้อเย็นในเมือง ไม่ใส่ปราสาท Kumamoto ในทริปนี้', 'เดินจากโรงแรมตามตำแหน่งจริง', 'shimotori')
   ] },
   { date: 20, weekday: 'อาทิตย์', tag: 'Aso → Beppu', title: 'ภูเขา กาแฟ เนื้ออากะ แล้วไป Beppu', description: 'นอน Prime Room Beppu Root · ไม่ใส่ปากปล่อง Nakadake', mode: 'driving', origin: 'kumamoto', destination: 'hanabishi', waypoints: ['kusa'], routeLabel: 'Kumamoto → Kusasenri → Akaushi', routeNote: 'เป็นแผนขับรถอ้างอิง ไม่ใช่เส้นทางเดินเขา ช่วง Aso → Beppu เปิดได้จากลิงก์แยกด้านล่าง', stops: [] },
@@ -105,13 +105,13 @@ const ASO_PLANS = {
 };
 const STAYS = [
   { poi: 'en', nights: '17–19 ธ.ค. · 2 คืน', status: 'รอตรวจชื่อ', text: 'มีข้อมูลวันเข้าพักตามสรุป แต่ชื่อ EN HOTEL Hakata ต้องเทียบอีเมลอีกครั้ง' },
-  { poi: 'kumamoto', nights: '19–20 ธ.ค. · 1 คืน', status: 'จองแล้วตามผู้ใช้แจ้ง', text: 'ผู้ใช้แจ้งว่าจองแล้ว 1 คืน · รอชื่อโรงแรม พิกัดจริง และรายละเอียดที่จอดรถ หมุด Sakuramachi / Karashimacho เป็นย่านที่เล็งไว้ก่อนจอง ไม่ใช่พิกัดโรงแรมที่ยืนยัน' },
+  { poi: 'kumamoto', nights: '19–20 ธ.ค. · 1 คืน', status: 'ยืนยันการจอง · ชำระแล้ว', text: 'Ark Hotel Kumamotojomae · Trip.com · compact double ปลอดบุหรี่ ไม่รวมอาหารเช้า · เช็กอินหลัง 15:00 / เช็กเอาต์ก่อน 10:00 · ชำระแล้ว ฿2,367.71 + ชำระที่พัก ¥400 (≈฿84.51) · ต้องยืนยันผู้เข้าพัก 2 คนและที่จอดรถ' },
   { poi: 'beppu', nights: '20–21 ธ.ค. · 1 คืน', status: 'ตามสรุปมีจอง', text: 'Prime Room Beppu Root · Standard House ที่จอดรถฟรีและกรอกข้อมูลผู้เข้าพักแล้วตามผู้ใช้แจ้ง ยังไม่ได้ตรวจ voucher ใน session นี้' },
   { poi: 'knot', nights: '21–23 ธ.ค. · 2 คืน', status: 'ตามสรุปชำระแล้ว', text: 'Superior Small Double · ต้องการห้องไม่สูบบุหรี่ คำขอส่งสำเร็จ/โรงแรมตอบรับหรือยัง ต้องตรวจ Gmail' }
 ];
 const BOOKINGS = [
   { id: 'kokura-v2', title: 'ซื้อตั๋ว Hakata–Kokura ไปกลับ 18 ธ.ค. · 2 คน', note: 'ถึง Hakata ก่อน 20:00 · ตรวจรอบ ราคา วันขาย การเปลี่ยนเวลา และวิธีรับตั๋ว' },
-  { id: 'kumamoto-details-v2', title: 'ตรวจชื่อโรงแรม Kumamoto ที่จอง 19–20 ธ.ค. และที่จอดรถ', note: 'จองแล้วตามผู้ใช้แจ้ง · รอชื่อโรงแรม พิกัดจริง เวลาเช็กอิน และเงื่อนไขที่จอดรถจาก voucher; ไม่ต้องจองซ้ำ' },
+  { id: 'kumamoto-guest-parking-v2', title: 'ยืนยัน Ark Hotel Kumamotojomae ว่าพัก 2 คนและจอดรถได้', note: 'เอกสาร Trip.com แสดง 1 ห้อง / 1 คน แต่ระบุชื่อผู้เข้าพัก 2 คน · ตรวจแก้จำนวนคนและค่าที่จอดรถก่อนถึง · มีค่าใช้จ่ายที่โรงแรม ¥400 แยกจากค่าห้องที่จ่ายแล้ว' },
   { id: 'orchard-v2', title: 'จอง / ยืนยันฟาร์ม 19 ธ.ค. เป้า 14:00', note: 'Fruitelier · ราคา ¥2,400 / 50 นาทีมาจากโบรชัวร์ รอตรวจรอบจริง' },
   { id: 'relax-v2', title: 'ตรวจ voucher Relax และยางฤดูหนาว', note: 'รถ รุ่น ประกัน ETC ค่าเพิ่ม จุดรับ–คืน · ไม่ใช้เงื่อนไข HM' },
   { id: 'idp-receive-v2', title: 'ตรวจว่าได้รับเล่มใบขับขี่สากลแล้วหรือยัง', note: 'ยื่นขอแล้วตามผู้ใช้แจ้ง แต่ยังไม่ทราบสถานะรับเล่ม' },
@@ -134,6 +134,6 @@ const PLACE_NOTES = {
   hanabishi: 'มื้อต้องกิน · Akaushi ย่าน Miyaji / Monzenmachi รอตรวจเวลาเปิด',
   kishi: 'เดินหนึ่งยอดเฉพาะเมื่อสภาพเหมาะ · หมุดนี้ไม่ใช่แผนเส้นทางเดินเขา',
   hyotan: 'ตัวเลือกออนเซ็น · ห้องส่วนตัวยังไม่จอง',
-  kumamoto: 'ผู้ใช้แจ้งว่าจองที่พักคืน 19–20 ธ.ค. แล้ว · รอชื่อและพิกัดจริง หมุด Sakuramachi เป็นเพียงย่านเดิมที่เล็งไว้',
+  kumamoto: 'Ark Hotel Kumamotojomae · 5-16 Jotomachi · Trip.com ชำระค่าห้องแล้ว · เช็กอินหลัง 15:00 / เช็กเอาต์ก่อน 10:00 · ต้องยืนยัน 2 คนและที่จอดรถ',
   market: 'รอตรวจกำหนดการตลาดปี 2026', tenjin: 'รอตรวจกำหนดการตลาดปี 2026'
 };
